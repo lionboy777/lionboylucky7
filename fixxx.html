@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lionboy Lucky 7 🦁</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script>
+firebase.initializeApp({
+  apiKey:"AIzaSyDckwn4Fqz-HtCirv3T_8ekUN_LcT3c2GM",
+  authDomain:"lionboy-fc5d7.firebaseapp.com",
+  databaseURL:"https://lionboy-fc5d7-default-rtdb.firebaseio.com",
+  projectId:"lionboy-fc5d7",
+  storageBucket:"lionboy-fc5d7.firebasestorage.app",
+  messagingSenderId:"1097649910722",
+  appId:"1:1097649910722:web:485e329b66082ab1c31c5b"
+});
+const db=firebase.database();
+const auth=firebase.auth();
+</script>
+<style>
+:root{
+  --g:#7C5CFC;--g2:#6C47FF;--g3:#9F80FF;--g4:#C4B0FF;--g5:rgba(108,71,255,0.15);--g6:rgba(108,71,255,0.08);
+  --gold:#F4C430;--gold2:#FFD966;--gold3:rgba(244,196,48,0.18);
+  --w:#131929;--bg:#080C18;--bg2:#0E1220;
+  --card:#131929;--card2:#1A2138;
+  --t:#E8EEFF;--t2:#A8B4D8;--t3:#5A6A8A;--t4:#2E3A55;
+  --brd:rgba(108,71,255,0.14);--brd2:rgba(108,71,255,0.28);
+  --sh:0 2px 16px rgba(0,0,0,0.4);--sh2:0 6px 28px rgba(0,0,0,0.5);--sh3:0 16px 56px rgba(0,0,0,0.6);
+  --red:#FF4757;--red2:rgba(255,71,87,0.15);
+  --d1:#F4C430;--d2:#6C47FF;--d3:#FF4757;--d4:#00C896;--d5:#FF6B35;--d6:#B44FFF;--d7:#FF3D71;--d8:#4FACFE;--d9:#00C896;
+  --r:10px;--r2:16px;--r3:22px;
+}
+[data-light]{
+  --w:#ffffff;--bg:#f0f2f8;--bg2:#e4e8f5;
+  --card:#ffffff;--card2:#f4f6fc;
+  --t:#0D1220;--t2:#2E3A55;--t3:#6A7A9A;--t4:#B0BACC;
+  --brd:rgba(108,71,255,0.1);--brd2:rgba(108,71,255,0.22);
+  --g5:rgba(108,71,255,0.08);--g6:rgba(108,71,255,0.04);
+  --sh:0 2px 12px rgba(0,0,0,0.07);--sh2:0 6px 24px rgba(0,0,0,0.11);--sh3:0 12px 40px rgba(0,0,0,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;overflow-x:hidden;}
+button,a{cursor:pointer;font-family:'Inter',sans-serif;}
+input,select,textarea{font-family:'Inter',sans-serif;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:var(--g2);border-radius:4px;opacity:.5;}
+::-webkit-scrollbar-track{background:transparent;}
+
+/* LOADING */
+#loading{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .5s;}
+#loading.hide{opacity:0;pointer-events:none;}
+.ld-lion{width:92px;height:92px;animation:ldpulse 1.4s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(108,71,255,0.4));}
+@keyframes ldpulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.ld-title{font-family:'Syne',sans-serif;font-size:1.25rem;color:var(--g3);font-weight:800;letter-spacing:1px;}
+.ld-sub{font-size:.75rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;}
+.ld-bar{width:180px;height:3px;background:var(--g5);border-radius:2px;overflow:hidden;}
+.ld-prog{height:100%;background:linear-gradient(90deg,var(--g2),var(--gold));border-radius:2px;animation:ldbar 1.6s ease-in-out infinite;}
+@keyframes ldbar{0%{width:0;margin-left:0;}50%{width:60%;margin-left:20%;}100%{width:0;margin-left:100%;}}
+
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(8,12,24,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--brd);box-shadow:0 2px 24px rgba(0,0,0,0.5);}
+[data-light] #topbar{background:rgba(240,242,248,0.94);}
+.tb-brand{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.tb-logo{width:38px;height:38px;filter:drop-shadow(0 0 8px rgba(108,71,255,0.35));}
+.tb-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;background:linear-gradient(135deg,#9F80FF,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tb-sub{font-size:.45rem;letter-spacing:3px;color:var(--t3);font-weight:700;display:block;margin-top:-2px;-webkit-text-fill-color:var(--t3);}
+.tb-right{display:flex;align-items:center;gap:10px;}
+.live-pill{display:none;align-items:center;gap:5px;background:var(--red);color:#fff;border-radius:20px;padding:5px 14px;font-size:.7rem;font-weight:800;box-shadow:0 2px 12px rgba(255,71,87,0.4);}
+.live-pill.on{display:flex;}
+.ldot{width:7px;height:7px;background:#fff;border-radius:50%;animation:bl 1s infinite;}
+@keyframes bl{0%,100%{opacity:1;}50%{opacity:.25;}}
+.hbtn{background:var(--g5);border:1px solid var(--brd2);color:var(--g3);font-size:1.4rem;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.hbtn:active{transform:scale(.93);background:var(--g2);color:#fff;}
+
+/* MENU */
+#menu-bg{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);}
+#menu-bg.on{display:block;}
+#menu{position:fixed;top:0;right:-320px;bottom:0;width:300px;z-index:401;background:#0E1220;border-left:1px solid var(--brd);box-shadow:-8px 0 48px rgba(0,0,0,.7);transition:right .28s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column;}
+[data-light] #menu{background:#ffffff;border-left-color:rgba(108,71,255,0.12);}
+#menu.on{right:0;}
+.m-head{background:linear-gradient(135deg,#1A1040,#0E1220);padding:22px 18px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--brd);}
+[data-light] .m-head{background:linear-gradient(135deg,#6C47FF,#9F80FF);}
+.m-lion{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.25);}
+.m-brand{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;}
+.m-sub{font-size:.5rem;letter-spacing:3px;color:rgba(255,255,255,.6);font-weight:700;display:block;margin-top:2px;text-transform:uppercase;}
+.m-x{margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1rem;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.m-sec{padding:8px 0;}
+.m-lbl{font-size:.58rem;font-weight:800;letter-spacing:2.5px;color:var(--t4);padding:10px 18px 4px;text-transform:uppercase;}
+[data-light] .m-lbl{color:#8899BB;}
+.m-item{display:flex;align-items:center;gap:12px;padding:12px 18px;background:none;border:none;width:100%;text-align:left;color:var(--t2);font-size:.9rem;font-weight:600;transition:all .15s;border-left:3px solid transparent;}
+[data-light] .m-item{color:#2E3A55;}
+.m-item:hover,.m-item.on{color:var(--g3);background:var(--g6);border-left-color:var(--g2);}
+.m-item .ico{font-size:1.1rem;width:24px;text-align:center;}
+.m-div{height:1px;background:var(--brd);margin:4px 18px;}
+.m-theme{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;}
+.m-theme span{font-size:.88rem;color:var(--t2);font-weight:600;}
+[data-light] .m-theme span{color:#2E3A55;}
+.tsw{width:44px;height:24px;background:var(--g5);border:1px solid var(--brd2);border-radius:12px;position:relative;cursor:pointer;transition:background .2s;}
+.tsw::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:var(--t3);border-radius:50%;transition:left .2s;}
+.tsw.on{background:var(--g2);border-color:var(--g);}
+.tsw.on::after{left:22px;background:#fff;}
+.m-admin-btn{margin:10px 14px;background:var(--g5);color:var(--g3);border:1px solid var(--brd2);border-radius:var(--r2);padding:12px;font-weight:700;font-size:1.3rem;width:calc(100% - 28px);display:flex;align-items:center;justify-content:center;}
+[data-light] .m-admin-btn{background:rgba(108,71,255,.08);color:var(--g2);}
+
+/* OVERLAYS */
+.ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:16px;}
+.ov.on{display:flex;}
+#loginbox{background:var(--card);border:1px solid var(--brd2);border-radius:var(--r3);padding:32px 26px;width:100%;max-width:340px;text-align:center;box-shadow:var(--sh3);}
+#loginbox h2{font-family:'Syne',sans-serif;color:var(--g3);font-size:1.3rem;margin-bottom:4px;}
+#loginbox p{color:var(--t3);font-size:.8rem;margin-bottom:18px;}
+.inp{width:100%;padding:12px 14px;border:1px solid var(--brd2);border-radius:var(--r);background:var(--bg2);color:var(--t);font-size:.9rem;font-weight:600;outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:10px;}
+.inp:focus{border-color:var(--g2);box-shadow:0 0 0 3px var(--g6);}
+.gbtn{width:100%;padding:13px;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border:none;border-radius:var(--r);font-weight:800;font-size:.92rem;transition:opacity .2s;}
+.gbtn:active{opacity:.85;}
+.cbtn{background:none;border:1px solid var(--brd2);color:var(--t3);font-size:.82rem;padding:10px;border-radius:var(--r);width:100%;margin-top:8px;font-weight:600;}
+#lerr{color:var(--red);font-size:.76rem;margin-top:5px;display:none;}
+#modbox{background:var(--card);border:1px solid var(--brd);border-radius:var(--r3);padding:22px 18px;width:100%;max-width:440px;max-height:88vh;overflow-y:auto;box-shadow:var(--sh3);}
+#modbox h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;margin-bottom:14px;color:var(--g3);}
+.macts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.confirm-box{background:var(--card);border:1px solid var(--brd2);border-radius:var(--r3);padding:26px 22px;width:100%;max-width:310px;text-align:center;box-shadow:var(--sh3);}
+.confirm-box h3{font-family:'Syne',sans-serif;font-size:1.05rem;color:var(--t);margin-bottom:8px;}
+.confirm-box p{color:var(--t3);font-size:.84rem;margin-bottom:20px;}
+.confirm-btns{display:flex;gap:10px;}
+.confirm-btns button{flex:1;padding:12px;border-radius:var(--r);font-weight:800;font-size:.88rem;border:none;}
+.btn-yes{background:var(--red);color:#fff;}
+.btn-no{background:var(--bg2);color:var(--t2);border:1px solid var(--brd)!important;}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#1A1040,#251550);color:var(--g3);padding:11px 22px;border-radius:25px;font-size:.82rem;font-weight:700;display:none;z-index:9999;white-space:nowrap;box-shadow:0 4px 20px rgba(108,71,255,0.4);border:1px solid var(--brd2);}
+#cnf{position:fixed;inset:0;pointer-events:none;z-index:998;display:none;}
+#win-ov{flex-direction:column;}
+#win-ov.on{display:flex;}
+.wbox{background:var(--card);border:1px solid var(--brd2);border-radius:var(--r3);padding:32px 24px;text-align:center;width:100%;max-width:340px;box-shadow:var(--sh3);border-top:4px solid var(--gold);}
+.wtroph{font-size:4rem;display:block;margin-bottom:10px;animation:bob .9s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(244,196,48,0.5));}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.wtitle{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--gold);margin-bottom:4px;}
+.wmode{font-size:.65rem;font-weight:800;letter-spacing:2.5px;color:var(--t3);margin-bottom:6px;text-transform:uppercase;}
+.wname{font-size:1.4rem;font-weight:900;color:var(--t);margin-bottom:6px;}
+.wprize{font-size:1.1rem;font-weight:800;color:var(--gold);margin-bottom:6px;}
+.wstatus{font-size:.78rem;color:var(--t3);margin-bottom:20px;}
+.wclose{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border:none;border-radius:var(--r2);padding:13px 28px;font-weight:800;font-size:.9rem;transition:transform .15s;}
+.wclose:active{transform:scale(.96);}
+
+/* PAGES */
+.pg{display:none;padding-top:60px;min-height:100vh;}
+.pg.on{display:block;}
+
+/* HERO */
+.hero-section{
+  position:relative;
+  background:linear-gradient(150deg,#060916 0%,#0D1030 40%,#150D38 100%);
+  padding:36px 20px 58px;text-align:center;overflow:hidden;
+}
+.hero-section::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:50px;
+  background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%);
+}
+.hero-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(108,71,255,.09) 1px,transparent 1px);
+  background-size:24px 24px;pointer-events:none;
+}
+.hero-section::before{
+  content:'';position:absolute;
+  width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(108,71,255,.18) 0%,transparent 70%);
+  top:-20px;left:50%;transform:translateX(-50%);
+  pointer-events:none;
+}
+.hero-logo-img{
+  width:88px;height:88px;border-radius:50%;
+  margin:0 auto 14px;
+  border:2px solid rgba(108,71,255,.4);
+  box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 6px rgba(108,71,255,.08);
+  position:relative;z-index:1;display:block;
+}
+.hero-title{
+  font-family:'Syne',sans-serif;font-size:1.65rem;font-weight:800;
+  color:#fff;margin-bottom:4px;position:relative;z-index:1;
+  letter-spacing:1.5px;
+  text-shadow:0 2px 20px rgba(108,71,255,.5);
+}
+.hero-sub{
+  font-size:.5rem;letter-spacing:6px;color:rgba(255,255,255,.45);
+  font-weight:700;position:relative;z-index:1;text-transform:uppercase;
+}
+.status-pill-wrap{
+  display:flex;justify-content:center;
+  margin-top:-22px;position:relative;z-index:2;padding:0 20px;
+}
+.status-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--card);border-radius:25px;
+  padding:10px 20px;box-shadow:0 4px 24px rgba(0,0,0,.5);
+  font-weight:700;font-size:.85rem;color:var(--t);
+  border:1px solid var(--brd2);
+  transition:all .2s;cursor:pointer;
+}
+.status-pill:active{transform:scale(.97);}
+.sp-dot{width:9px;height:9px;border-radius:50%;}
+.sp-dot.live{background:var(--red);animation:bl 1s infinite;box-shadow:0 0 6px var(--red);}
+.sp-dot.coming{background:var(--t4);}
+.sp-dot.booking{background:var(--g3);box-shadow:0 0 6px var(--g2);}
+.sp-dot.sold{background:#FF6B35;}
+
+/* COMING SOON STATE */
+.coming-soon-wrap{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 24px 80px;text-align:center;
+}
+.cs-icon{font-size:4rem;margin-bottom:16px;animation:bob 2s ease-in-out infinite;}
+.cs-title{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--t);margin-bottom:8px;}
+.cs-sub{font-size:.9rem;color:var(--t3);line-height:1.6;max-width:280px;}
+
+/* NOTICES */
+.notices-wrap{padding:12px 14px 0;}
+.notice-card{background:rgba(244,196,48,0.08);border:1px solid rgba(244,196,48,0.22);border-radius:var(--r2);padding:12px 14px 12px 16px;position:relative;margin-bottom:10px;}
+.notice-card::before{content:'📌';position:absolute;top:-9px;left:12px;font-size:.9rem;}
+.notice-txt{font-size:.88rem;line-height:1.6;color:var(--t2);}
+.notice-time{font-size:.65rem;color:var(--t3);margin-top:4px;}
+.soc-row{display:flex;gap:10px;flex-wrap:wrap;padding:10px 14px 0;}
+.soc-wa{background:#25D366;color:#fff;border:none;border-radius:22px;padding:8px 18px;font-weight:700;font-size:.82rem;display:flex;align-items:center;gap:6px;text-decoration:none;}
+.soc-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;border:none;border-radius:22px;padding:8px 18px;font-weight:700;font-size:.82rem;display:flex;align-items:center;gap:6px;text-decoration:none;}
+
+/* PRIZE BANNER */
+.prize-banner{
+  margin:14px 14px 0;
+  background:linear-gradient(135deg,#1A1040 0%,#0E1628 100%);
+  border:1px solid rgba(244,196,48,0.25);
+  border-radius:var(--r3);overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,0.5);
+}
+.pb-header{
+  background:linear-gradient(135deg,#2A1A60,#1A1040);
+  padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(244,196,48,0.2);
+}
+.pb-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--t);}
+.pb-pool{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--gold);}
+.pb-body{padding:12px 16px 14px;}
+.pb-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.pb-tag{background:rgba(108,71,255,0.15);border:1px solid rgba(108,71,255,0.25);color:var(--g3);border-radius:20px;padding:4px 12px;font-size:.72rem;font-weight:700;}
+.pb-tag.paid{background:rgba(244,196,48,0.1);border-color:rgba(244,196,48,0.2);color:var(--gold);}
+.pb-tag.live{background:rgba(255,71,87,0.1);border-color:rgba(255,71,87,0.25);color:var(--red);}
+.pb-desc{font-size:.85rem;color:var(--t2);margin-bottom:12px;line-height:1.5;}
+.pb-prizes{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.pb-prize-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(108,71,255,0.1);
+  border-radius:var(--r);
+}
+.pb-prize-row:first-child{
+  background:rgba(244,196,48,0.08);
+  border-color:rgba(244,196,48,0.2);
+}
+.pbp-mode{font-size:.8rem;font-weight:700;color:var(--t2);display:flex;align-items:center;gap:6px;}
+.pbp-mode .pico{font-size:1rem;}
+.pbp-amt{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--gold);}
+.pb-prize-row:first-child .pbp-amt{color:var(--gold);text-shadow:0 0 12px rgba(244,196,48,0.4);}
+.pb-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.pb-info-cell{background:rgba(255,255,255,0.04);border:1px solid var(--brd);border-radius:var(--r);padding:10px 12px;text-align:center;}
+.pb-info-val{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--g3);}
+.pb-info-lbl{font-size:.58rem;letter-spacing:1px;color:var(--t3);font-weight:700;margin-top:2px;text-transform:uppercase;}
+.pb-banner-img{width:100%;height:140px;object-fit:cover;display:none;border-bottom:1px solid var(--brd);}
+.live-now-badge{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border-radius:20px;padding:7px 16px;font-weight:800;font-size:.78rem;cursor:pointer;box-shadow:0 2px 12px rgba(255,71,87,0.35);}
+
+/* COUNTDOWN */
+.cd-wrap{display:flex;gap:8px;justify-content:center;padding:4px 0 2px;}
+.cdu{
+  background:rgba(108,71,255,0.12);
+  border:1px solid rgba(108,71,255,0.25);
+  border-radius:var(--r2);padding:12px 8px;
+  min-width:64px;text-align:center;flex:1;max-width:80px;
+}
+.cdn{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;line-height:1;color:var(--t);}
+.cdl{font-size:.48rem;letter-spacing:2px;font-weight:700;color:var(--t3);margin-top:3px;text-transform:uppercase;}
+
+/* SEC HEADING */
+.sec-hd{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:2.5px;color:var(--t4);text-transform:uppercase;padding:16px 14px 8px;display:flex;align-items:center;gap:8px;}
+.sec-hd::after{content:'';flex:1;height:1px;background:var(--brd);}
+
+/* TICKET OVERVIEW GRID — 6 per row */
+.tov-grid-wrap{padding:0 14px 8px;}
+.tov-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+.tov{
+  aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:8px;border:1px solid var(--brd);font-size:.65rem;font-weight:800;
+  background:var(--card);color:var(--t3);transition:all .2s;
+}
+.tov.open{border-style:dashed;}
+.tov.booked{
+  background:rgba(108,71,255,0.18);
+  border-color:var(--g2);border-style:solid;
+  color:var(--g3);
+}
+.tov.booked .tov-icon{color:var(--gold);}
+
+/* TICKET CHART GRID — Seat map style */
+.tix-chart-section{padding:0 14px 16px;}
+.tix-chart-section .board-ttl{margin-bottom:12px;}
+.tix-chart{display:grid;gap:5px;}
+.tch{
+  aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:8px;border:1px solid var(--brd);font-size:.68rem;font-weight:800;
+  background:var(--card);color:var(--t3);transition:all .25s cubic-bezier(.34,1.56,.64,1);cursor:default;
+}
+.tch.booked{
+  background:linear-gradient(135deg,var(--g2),var(--g));
+  border-color:var(--g2);color:#fff;
+  box-shadow:0 2px 10px rgba(108,71,255,.35);
+  transform:scale(1.04);
+}
+.tch.open{border-style:dashed;opacity:.6;}
+.tch .tn{font-size:.7rem;font-weight:800;line-height:1;}
+.tch .tl{font-size:.44rem;font-weight:700;margin-top:2px;opacity:.75;}
+
+/* ════ AUTHENTIC TAMBOLA TICKET ════ */
+.tix-list{padding:0 14px 24px;display:flex;flex-direction:column;gap:16px;}
+
+/* Outer card wrapper */
+.tcard{
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+  border:1px solid var(--brd);
+  position:relative;
+  transition:box-shadow .2s;
+}
+.tcard.booked{border-color:rgba(108,71,255,0.4);box-shadow:0 4px 20px rgba(108,71,255,.15);}
+.tcard.open{opacity:.6;}
+.tcard.highlighted{
+  border-color:var(--gold);border-width:2px;
+  box-shadow:0 0 0 3px rgba(244,196,48,.15),0 8px 24px rgba(244,196,48,.1);
+}
+
+/* Punch-hole notches */
+.tcard::before,.tcard::after{
+  content:'';position:absolute;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--brd);z-index:2;
+  top:50%;transform:translateY(-50%);
+}
+.tcard::before{left:-7px;}
+.tcard::after{right:-7px;}
+
+/* Ticket top band */
+.tc-band{
+  height:36px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px 0 16px;
+  background:linear-gradient(90deg,var(--g) 0%,var(--g2) 60%,var(--g3) 100%);
+}
+.tcard.open .tc-band{
+  background:linear-gradient(90deg,#aaa 0%,#bbb 60%,#ccc 100%);
+}
+.tc-num{
+  font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;
+  color:rgba(255,255,255,.95);letter-spacing:.5px;
+}
+.tc-tag{
+  font-size:.58rem;font-weight:800;letter-spacing:1.2px;
+  padding:3px 10px;border-radius:20px;text-transform:uppercase;
+  background:rgba(255,255,255,.2);color:rgba(255,255,255,.9);
+  backdrop-filter:blur(4px);
+}
+
+/* Buyer name bar */
+.tc-buyer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:6px 14px;
+  background:rgba(108,71,255,0.07);
+  border-bottom:1px dashed var(--brd2);
+}
+.tc-name{font-size:.8rem;font-weight:700;color:var(--g3);}
+.tc-paid{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:10px;
+}
+.tc-paid.p{background:rgba(0,200,150,0.15);color:#00C896;}
+.tc-paid.u{background:var(--red2);color:var(--red);}
+
+/* THE ACTUAL TAMBOLA TICKET GRID */
+.tc-body{
+  background:#0F0C1A;
+  padding:10px 12px 12px;
+  position:relative;
+}
+[data-light] .tc-body{background:#FFFEF2;}
+
+.tc-body::before{
+  content:'';display:block;
+  border-top:1px dashed rgba(108,71,255,0.2);
+  margin-bottom:8px;
+}
+
+.ticket-tbl{
+  width:100%;border-collapse:collapse;
+  border:1.5px solid rgba(108,71,255,0.3);
+  border-radius:4px;overflow:hidden;
+}
+[data-light] .ticket-tbl{border-color:#1a1a1a;}
+
+.ticket-tbl tr{border-bottom:1px solid rgba(108,71,255,0.2);}
+[data-light] .ticket-tbl tr{border-bottom-color:#1a1a1a;}
+.ticket-tbl tr:last-child{border-bottom:none;}
+
+.ticket-tbl td{
+  border-right:1px solid rgba(108,71,255,0.2);
+  width:11.11%;padding:0;text-align:center;position:relative;
+}
+[data-light] .ticket-tbl td{border-right-color:#1a1a1a;}
+.ticket-tbl td:last-child{border-right:none;}
+
+/* Each cell */
+.tc{
+  display:flex;align-items:center;justify-content:center;
+  height:32px;font-size:.84rem;font-weight:800;
+  position:relative;overflow:hidden;
+  transition:background .18s,color .18s;
+}
+
+/* Empty cell */
+.tc.e{background:rgba(108,71,255,0.04);color:transparent;}
+[data-light] .tc.e{background:#F2EFDD;}
+.tc.e::before{
+  content:'';position:absolute;inset:3px;
+  border:1px dashed rgba(108,71,255,0.12);border-radius:2px;
+}
+[data-light] .tc.e::before{border-color:rgba(0,0,0,.08);}
+
+/* Number cell */
+.tc.h{background:transparent;color:#C4B0FF;}
+[data-light] .tc.h{background:#FFFEF2;color:#2E1A8E;}
+
+/* Marked / daubed */
+.tc.m{background:linear-gradient(135deg,var(--g),var(--g2))!important;color:#fff!important;}
+.tc.m::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle,rgba(255,255,255,.2) 0%,transparent 65%);
+}
+.tc.daub{animation:daub .28s cubic-bezier(.34,1.56,.64,1);}
+@keyframes daub{0%{transform:scale(1.35);}50%{transform:scale(.93);}100%{transform:scale(1);}}
+
+/* LIVE PAGE */
+.live-top{
+  background:linear-gradient(160deg,#060916 0%,#0D1030 45%,#150D38 100%);
+  padding:28px 16px 44px;position:relative;overflow:hidden;
+}
+.live-top::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:36px;
+  background:var(--bg);clip-path:ellipse(60% 100% at 50% 100%);
+}
+.lt-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(108,71,255,.08) 1px,transparent 1px);
+  background-size:22px 22px;pointer-events:none;
+}
+.lt-circle{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-56%);
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(108,71,255,.06);
+  border:1px solid rgba(108,71,255,.15);
+  pointer-events:none;
+}
+.lt-circle2{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-56%);
+  width:260px;height:260px;border-radius:50%;
+  background:transparent;
+  border:1px solid rgba(108,71,255,.07);
+  pointer-events:none;
+}
+.lt-label{
+  font-size:.55rem;font-weight:800;letter-spacing:5px;
+  color:rgba(255,255,255,.4);margin-bottom:6px;text-align:center;
+  text-transform:uppercase;
+}
+.lt-num{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(7rem,28vw,10rem);
+  font-weight:800;color:#fff;line-height:1;
+  text-align:center;
+  text-shadow:0 0 60px rgba(108,71,255,.6),0 4px 24px rgba(0,0,0,.4);
+  letter-spacing:-2px;
+  position:relative;z-index:1;
+}
+.lt-num.pop{animation:numpop .38s cubic-bezier(.34,1.56,.64,1);}
+@keyframes numpop{0%{transform:scale(.65);opacity:.3;}100%{transform:scale(1);opacity:1;}}
+.lt-call{
+  font-size:.8rem;font-weight:600;
+  color:rgba(255,255,255,.65);font-style:italic;
+  text-align:center;margin-top:4px;
+  min-height:1.3em;padding:0 20px;letter-spacing:.2px;
+}
+.lt-prev{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:12px;flex-wrap:wrap;
+}
+.lt-prev-label{font-size:.55rem;font-weight:800;letter-spacing:2.5px;color:rgba(255,255,255,.35);text-transform:uppercase;}
+.lt-prev-nums{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;}
+.lt-prev-n{
+  background:rgba(108,71,255,.2);color:var(--g3);
+  border-radius:8px;padding:3px 9px;
+  font-size:.72rem;font-weight:800;
+  border:1px solid rgba(108,71,255,.3);
+}
+
+.stat-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--card);
+  border-bottom:1px solid var(--brd);
+}
+.ss{padding:12px 4px;text-align:center;border-right:1px solid var(--brd);}
+.ss:last-child{border-right:none;}
+.ss-v{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--g3);}
+.ss-l{font-size:.48rem;letter-spacing:1.5px;color:var(--t3);font-weight:700;margin-top:2px;text-transform:uppercase;}
+.act-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:var(--card);border-bottom:1px solid var(--brd);
+}
+.shr-btn{
+  background:var(--g5);color:var(--g3);border:1px solid var(--brd2);
+  border-radius:20px;padding:7px 16px;font-size:.78rem;font-weight:700;
+  display:flex;align-items:center;gap:5px;transition:all .15s;
+}
+.shr-btn:active{transform:scale(.95);}
+.vc-badge{
+  display:none;align-items:center;gap:5px;
+  background:var(--g6);border:1px solid var(--brd);
+  border-radius:20px;padding:5px 12px;font-size:.74rem;font-weight:700;color:var(--g3);
+}
+.vc-badge.on{display:flex;}
+.vcdot{width:7px;height:7px;background:var(--g3);border-radius:50%;animation:bl 1.5s infinite;}
+
+/* BOARD */
+.board-section{padding:14px 12px;}
+.board-ttl{
+  font-family:'Syne',sans-serif;font-size:.6rem;font-weight:800;
+  letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;
+}
+.board-ttl::after{content:'';flex:1;height:1px;background:var(--brd);}
+.board-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;}
+.bc{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  border-radius:7px;font-weight:800;font-size:clamp(.56rem,2.2vw,.78rem);
+  color:#fff;opacity:.18;transition:all .22s;
+}
+.bc.on{opacity:1;transform:scale(1.06);box-shadow:0 2px 10px rgba(0,0,0,.4);}
+.bc.fresh{animation:bcf .38s cubic-bezier(.34,1.56,.64,1);}
+@keyframes bcf{0%{transform:scale(1.8);opacity:.6;}100%{transform:scale(1.06);opacity:1;}}
+
+/* WINNERS */
+.win-card{
+  background:var(--card);border:1px solid var(--brd);border-radius:var(--r2);
+  padding:12px 14px;display:flex;align-items:center;gap:10px;
+  margin-bottom:8px;border-left:3px solid var(--gold);
+  animation:wein .35s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes wein{from{transform:translateX(16px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+.win-ic{font-size:1.4rem;}
+.win-tp{font-weight:800;color:var(--gold);font-size:.86rem;}
+.win-dt{font-size:.72rem;color:var(--t3);margin-top:2px;}
+
+/* MULTI-SEARCH */
+.msearch-wrap{padding:10px 14px 0;}
+.msearch-box{
+  display:flex;gap:8px;align-items:center;
+  background:var(--card);border:1px solid var(--brd2);
+  border-radius:var(--r2);padding:10px 14px;
+}
+.msearch-box input{flex:1;border:none;background:none;font-size:.88rem;font-weight:600;color:var(--t);outline:none;}
+.msearch-box input::placeholder{color:var(--t4);}
+.msearch-box button{
+  background:var(--g2);color:#fff;border:none;
+  border-radius:var(--r);padding:8px 16px;font-weight:700;font-size:.8rem;
+  white-space:nowrap;transition:opacity .15s;
+}
+.msearch-box button:active{opacity:.8;}
+.msearch-results{margin-top:10px;}
+.msearch-wrap2{position:relative;margin-bottom:14px;}
+.msearch-remove{
+  position:absolute;top:8px;right:8px;z-index:10;
+  background:var(--red);color:#fff;border:none;
+  border-radius:50%;width:26px;height:26px;font-size:.72rem;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:800;
+}
+
+/* UPCOMING */
+.ev-wrap{padding:0 14px 20px;}
+.ev-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r2);padding:16px;margin-bottom:12px;}
+.ev-name{font-family:'Syne',sans-serif;font-weight:800;font-size:.94rem;margin-bottom:10px;}
+.ev-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.ev-cell{background:var(--bg2);border-radius:var(--r);padding:8px 10px;border:1px solid var(--brd);}
+.ev-cv{font-size:.88rem;font-weight:700;color:var(--g3);}
+.ev-cl{font-size:.56rem;letter-spacing:1px;color:var(--t3);font-weight:700;text-transform:uppercase;}
+.ev-cd{display:flex;gap:6px;margin-top:10px;}
+.ev-cdu{background:var(--g2);color:#fff;border-radius:8px;padding:6px 10px;text-align:center;flex:1;}
+.ev-cdn{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;line-height:1;}
+.ev-cdl{font-size:.44rem;letter-spacing:1.5px;font-weight:700;opacity:.8;text-transform:uppercase;}
+
+/* PREV */
+.prev-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r2);padding:14px 16px;margin-bottom:10px;}
+.prev-nm{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;margin-bottom:4px;}
+.prev-mt{font-size:.74rem;color:var(--t3);}
+.pw-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r2);padding:14px 16px;margin-bottom:10px;}
+.pw-gn{font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--brd);}
+.pw-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:.8rem;}
+.pw-md{font-weight:700;color:var(--g3);min-width:100px;}
+.pw-dt{color:var(--t3);flex:1;}
+.pw-prize{font-weight:800;color:var(--gold);font-size:.8rem;}
+
+/* ADMIN */
+.adm-pg{display:none;padding-top:60px;min-height:100vh;}
+.adm-pg.on{display:block;}
+.adm-wrap{padding:0 14px 28px;}
+.ap{display:none;}.ap.on{display:block;}
+.pt{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--g3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--brd);}
+.fg{display:flex;flex-direction:column;gap:3px;margin-bottom:12px;}
+.fg label{font-size:.6rem;font-weight:800;letter-spacing:1px;color:var(--t3);text-transform:uppercase;}
+.fi,.fs,.ft{background:var(--bg2);border:1px solid var(--brd2);color:var(--t);font-size:.88rem;padding:10px 12px;border-radius:var(--r);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--g2);box-shadow:0 0 0 3px var(--g6);}
+.ft{resize:vertical;min-height:70px;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.abtn{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border:none;font-weight:800;font-size:.88rem;padding:12px 22px;border-radius:var(--r);transition:all .2s;}
+.abtn:active{transform:scale(.97);}
+.bsm{padding:6px 13px;font-size:.76rem;border-radius:8px;font-weight:700;border:none;transition:all .15s;}
+.bs{background:var(--g5);color:var(--g3);border:1px solid var(--brd2);}
+.bd{background:var(--red2);color:var(--red);border:1px solid rgba(255,71,87,.2);}
+.bw{background:var(--bg2);color:var(--t2);border:1px solid var(--brd);}
+.adm-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;}
+.adm-card.lv{border-color:rgba(108,71,255,.4);background:rgba(108,71,255,.06);}
+.gc-nm{font-weight:800;font-size:.92rem;display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px;}
+.gc-mt{font-size:.74rem;color:var(--t3);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+.gc-ac{display:flex;gap:6px;flex-wrap:wrap;}
+.at-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;}
+.at-sl{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s;}
+.at-sl.bk{border-color:var(--g2);background:var(--g5);}
+.at-n{font-family:'Syne',sans-serif;color:var(--g3);font-size:1rem;font-weight:800;}
+.at-nm{font-size:.64rem;color:var(--t3);margin-top:3px;word-break:break-all;}
+.at-st{font-size:.54rem;letter-spacing:.5px;margin-top:2px;font-weight:700;color:var(--t4);}
+.wm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.wm-it{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:10px 12px;cursor:pointer;transition:all .15s;}
+.wm-it:hover{border-color:var(--brd2);}
+.wm-it input{accent-color:var(--g2);width:16px;height:16px;}
+.wm-it label{cursor:pointer;font-size:.84rem;font-weight:600;flex:1;}
+.wm-prize{width:70px;padding:4px 8px;border:1px solid var(--brd2);border-radius:6px;background:var(--bg);color:var(--gold);font-size:.8rem;font-weight:800;text-align:center;outline:none;}
+.cb{padding:10px 18px;border-radius:var(--r);border:none;font-weight:800;font-size:.86rem;transition:all .15s;}
+.cst{background:var(--g5);color:var(--g3);border:1px solid var(--brd2);}
+.cpa{background:rgba(255,167,38,0.15);color:#FFA726;border:1px solid rgba(255,167,38,0.25);}
+.cen{background:var(--red2);color:var(--red);border:1px solid rgba(255,71,87,.2);}
+.notice-item-admin{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:11px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;}
+.nia-txt{flex:1;font-size:.84rem;line-height:1.5;color:var(--t2);}
+.nia-acts{display:flex;gap:5px;flex-shrink:0;}
+.secban{background:var(--red2);border:1px dashed rgba(255,71,87,.3);border-radius:var(--r);padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--red);font-weight:800;}
+#secp{display:none;}#secp.on{display:block;}
+.banner-sel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;}
+.bsel{border:2px solid var(--brd);border-radius:var(--r);overflow:hidden;cursor:pointer;aspect-ratio:1;position:relative;}
+.bsel.active{border-color:var(--g2);box-shadow:0 0 0 3px rgba(108,71,255,.2);}
+.bsel img{width:100%;height:100%;object-fit:cover;}
+.bsel-empty{background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:1.2rem;}
+.bsel-del{position:absolute;top:2px;right:2px;background:var(--red);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:.6rem;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+/* Badge used in admin JS */
+.gc-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.62rem;font-weight:800;letter-spacing:1px;}
+.gcb-free{background:var(--g5);color:var(--g3);}
+.gcb-paid{background:var(--red2);color:var(--red);}
+
+/* BOOKING PAGE */
+.bk-stat-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r2);padding:12px 8px;text-align:center;}
+.bk-stat-val{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--g3);}
+.bk-stat-lbl{font-size:.52rem;letter-spacing:1.5px;color:var(--t3);font-weight:700;margin-top:3px;text-transform:uppercase;}
+.bk-sheet-card{border-radius:var(--r2);padding:10px 8px;text-align:center;border:1px solid;}
+.bk-sheet-card.single{background:rgba(108,71,255,.1);border-color:rgba(108,71,255,.25);}
+.bk-sheet-card.half{background:rgba(0,200,150,.08);border-color:rgba(0,200,150,.3);}
+.bk-sheet-card.full{background:rgba(255,107,53,.08);border-color:rgba(255,107,53,.3);}
+.bk-sheet-val{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--t);}
+.bk-sheet-lbl{font-size:.5rem;letter-spacing:1px;color:var(--t3);font-weight:700;margin-top:2px;text-transform:uppercase;}
+.bk-type-btn{flex-shrink:0;padding:8px 16px;background:var(--card);border:1px solid var(--brd2);border-radius:20px;color:var(--t2);font-size:.78rem;font-weight:700;transition:all .18s;cursor:pointer;}
+.bk-type-btn.active{background:var(--g2);border-color:var(--g2);color:#fff;box-shadow:0 3px 12px rgba(108,71,255,.35);}
+.bk-chart-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;}
+.bk-chart-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;border:2px solid var(--brd2);background:var(--card);transition:all .18s;position:relative;overflow:hidden;cursor:default;}
+.bk-chart-cell.booked{background:var(--g2);border-color:var(--g2);box-shadow:0 2px 10px rgba(108,71,255,.35);}
+.bk-chart-cell.half-grp{background:rgba(0,200,150,.15);border-color:rgba(0,200,150,.7);}
+.bk-chart-cell.full-grp{background:rgba(255,107,53,.15);border-color:rgba(255,107,53,.7);}
+.bk-chart-cell.highlight{border-color:var(--gold)!important;border-width:2px!important;box-shadow:0 0 0 3px rgba(244,196,48,.25)!important;}
+.bk-cell-num{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:800;line-height:1;color:var(--g3);}
+.bk-chart-cell.booked .bk-cell-num{color:#fff;}
+.bk-chart-cell.half-grp .bk-cell-num{color:#00C896;}
+.bk-chart-cell.full-grp .bk-cell-num{color:#FF6B35;}
+.bk-cell-name{font-size:.38rem;font-weight:700;margin-top:3px;color:var(--t3);text-overflow:ellipsis;overflow:hidden;white-space:nowrap;max-width:92%;text-align:center;}
+.bk-chart-cell.booked .bk-cell-name{color:rgba(255,255,255,.75);}
+.bk-cell-type{position:absolute;top:2px;right:3px;font-size:.36rem;font-weight:800;color:var(--gold);}
+.bk-chart-cell.admin-mode{cursor:pointer;}
+.bk-chart-cell.admin-mode:not(.booked):hover{border-color:var(--g2);background:var(--g6);}
+.bk-chart-cell.admin-mode:active{transform:scale(.93);}
+[data-light] .bk-chart-cell:not(.booked){background:#f4f2ff;border-color:rgba(108,71,255,.2);}
+[data-light] .bk-chart-cell:not(.booked) .bk-cell-num{color:#6C47FF;}
+[data-light] .bk-chart-cell.booked{background:var(--g2);border-color:var(--g2);}
+.bk-search-box{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--brd2);border-radius:var(--r2);padding:11px 14px;}
+.bk-search-box input{flex:1;border:none;background:none;font-size:.88rem;font-weight:600;color:var(--t);outline:none;}
+.bk-search-box input::placeholder{color:var(--t4);}
+.bk-search-clear{background:none;border:none;color:var(--t3);font-size:1rem;padding:0 2px;cursor:pointer;}
+.assign-box{background:var(--card);border:1px solid var(--brd2);border-radius:var(--r3);padding:24px 20px;width:100%;max-width:320px;box-shadow:var(--sh3);}
+.assign-box h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--g3);margin-bottom:4px;}
+.assign-box p{font-size:.75rem;color:var(--t3);margin-bottom:14px;}
+.assign-type-row{display:flex;gap:6px;margin-bottom:12px;}
+.assign-type-btn{flex:1;padding:8px 4px;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--r);color:var(--t2);font-size:.7rem;font-weight:700;text-align:center;cursor:pointer;transition:all .15s;}
+.assign-type-btn.active{background:var(--g2);border-color:var(--g2);color:#fff;}
+.assign-actions{display:flex;gap:8px;margin-top:14px;}
+/* T&C footer */
+.tc-footer{padding:20px 18px 16px;text-align:center;border-top:1px solid var(--brd);margin-top:10px;}
+.tc-link{display:inline-flex;align-items:center;gap:6px;color:var(--t3);font-size:.78rem;font-weight:600;cursor:pointer;border:none;background:none;}
+.powered-by{font-size:.64rem;color:var(--t4);margin-top:8px;}
+.powered-by b{color:var(--g3);font-weight:700;}
+.tc-modal{background:var(--card);border:1px solid var(--brd2);border-radius:var(--r3);padding:24px 20px;width:100%;max-width:420px;max-height:85vh;overflow-y:auto;box-shadow:var(--sh3);}
+.tc-modal h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--g3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--brd);}
+.tc-modal-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd);font-size:.82rem;color:var(--t2);line-height:1.6;}
+.tc-modal-item:last-child{border-bottom:none;}
+.tc-modal-icon{font-size:1rem;flex-shrink:0;width:20px;}
+.tc-modal-footer{font-size:.68rem;color:var(--t3);text-align:center;margin-top:14px;line-height:1.7;}
+/* Admin bookings */
+.legend-item{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--t2);font-weight:600;}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+
+/* VISITOR DASHBOARD grid — read-only numbered cells */
+.vis-bk-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;}
+.vis-bk-cell{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  border-radius:8px;font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;
+  border:1.5px solid #ddd;background:#fff;color:#222;
+  transition:background .15s,border-color .15s;cursor:default;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+[data-light] .vis-bk-cell{background:#fff;border-color:#ddd;color:#222;}
+body:not([data-light]) .vis-bk-cell{background:var(--card2);border-color:var(--brd);color:var(--t2);}
+.vis-bk-cell.booked{background:#F4C430;border-color:#d4a800;color:#1a1a1a;}
+body:not([data-light]) .vis-bk-cell.booked{background:var(--g2);border-color:var(--g);color:#fff;}
+.vis-bk-cell.highlight{border-color:var(--red)!important;box-shadow:0 0 0 2px rgba(255,71,87,.25)!important;}
+
+/* ADMIN half/full sheet group UI */
+.sheet-group{
+  border:1.5px solid var(--brd2);border-radius:var(--r);
+  margin-bottom:8px;overflow:hidden;
+}
+.sheet-group-header{
+  background:var(--g5);border-bottom:1px solid var(--brd);
+  padding:7px 12px;font-size:.7rem;font-weight:800;color:var(--g3);
+  letter-spacing:.5px;display:flex;align-items:center;justify-content:space-between;
+}
+.sheet-group-cells{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.sheet-group-cell{
+  padding:10px 8px;text-align:center;border-right:1px solid var(--brd);
+  cursor:pointer;transition:background .15s;
+}
+.sheet-group-cell:last-child{border-right:none;}
+.sheet-group-cell.booked{background:rgba(108,71,255,.1);}
+.sheet-group-cell:hover:not(.booked){background:var(--g6);}
+.sheet-group-cell-n{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--g3);}
+.sheet-group-cell-nm{font-size:.62rem;color:var(--t3);margin-top:2px;word-break:break-word;}
+
+/* FULL sheet group (6 cells per group) */
+.sheet-group-cells.full-sheet{grid-template-columns:repeat(6,1fr);}
+
+/* NEW T&C MODAL — white paper style */
+.tc-modal{
+  background:#ffffff;border-radius:16px;
+  width:100%;max-width:480px;max-height:88vh;
+  display:flex;flex-direction:column;
+  box-shadow:0 24px 64px rgba(0,0,0,.35);
+  overflow:hidden;position:relative;
+}
+.tc-modal-header{
+  padding:20px 48px 16px 20px;
+  border-bottom:1px solid #eee;flex-shrink:0;
+  background:#fff;
+}
+.tc-modal-body{
+  flex:1;overflow-y:auto;padding:16px 20px;background:#fff;
+}
+.tc-rule-item{
+  display:flex;gap:12px;padding:10px 0;
+  border-bottom:1px solid #f0f0f0;font-size:.82rem;color:#333;line-height:1.6;
+}
+.tc-rule-item:last-of-type{border-bottom:none;}
+.tc-rule-num{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  background:#111;color:#fff;font-size:.62rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.tc-fp-block{
+  background:#f8f8f8;border-left:3px solid #111;border-radius:0 8px 8px 0;
+  padding:14px 16px;margin:14px 0 4px;
+}
+.tc-fp-title{font-size:.78rem;font-weight:800;color:#111;margin-bottom:8px;letter-spacing:.3px;}
+.tc-fp-item{font-size:.78rem;color:#444;padding:3px 0;line-height:1.5;}
+.tc-fp-item::before{content:"— ";}
+.tc-modal-footer-btn{
+  padding:16px 20px;border-top:1px solid #eee;flex-shrink:0;background:#fff;
+}
+.tc-accept-btn{
+  width:100%;padding:13px;background:#111;color:#fff;border:none;
+  border-radius:10px;font-family:'Inter',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;
+  letter-spacing:.3px;transition:background .15s;
+}
+.tc-accept-btn:active{background:#333;}
+/* Light theme fixes */
+[data-light] #topbar{background:rgba(255,255,255,0.96);}
+[data-light] .tcard{background:#fff;border-color:rgba(108,71,255,0.15);}
+[data-light] .tc-body{background:#FFFEF2;}
+[data-light] .ticket-tbl{border-color:#c8c0e8;}
+[data-light] .ticket-tbl tr{border-bottom-color:#c8c0e8;}
+[data-light] .ticket-tbl td{border-right-color:#c8c0e8;}
+[data-light] .tc.h{background:#FFFEF2;color:#2E1A8E;}
+[data-light] .tc.e{background:#F2EFDD;}
+[data-light] .tc.m{background:linear-gradient(135deg,#6C47FF,#9F80FF)!important;color:#fff!important;}
+[data-light] .notice-card{background:#fff;border-color:rgba(244,196,48,0.35);}
+[data-light] .prize-banner{background:linear-gradient(135deg,#f8f6ff,#eeebff);border-color:rgba(108,71,255,0.2);}
+[data-light] .pb-header{background:linear-gradient(135deg,#6C47FF,#9F80FF);}
+[data-light] .pb-title,[data-light] .pb-pool{color:#fff;}
+[data-light] .pb-info-cell{background:#f4f2ff;}
+[data-light] .pb-info-val{color:#6C47FF;}
+[data-light] .cdu{background:rgba(108,71,255,0.08);border-color:rgba(108,71,255,0.2);}
+[data-light] .cdn{color:#0D1220;}
+[data-light] .status-pill{background:#fff;}
+[data-light] .hero-section{background:linear-gradient(150deg,#4830CC,#6C47FF,#9F80FF);}
+[data-light] .m-item{color:#2E3A55;}
+[data-light] .m-lbl{color:#8899BB;}
+[data-light] .m-theme span{color:#2E3A55;}
+[data-light] .m-admin-btn{background:rgba(108,71,255,.08);color:var(--g2);}
+
+@media(max-width:380px){.fr2,.fr3{grid-template-columns:1fr;}.stat-strip{grid-template-columns:repeat(2,1fr);}.bk-chart-grid{grid-template-columns:repeat(5,1fr);}}
+</style>
+</head>
+<body>
+
+<!-- WELCOME POPUP -->
+<div id="welcome-ov" style="position:fixed;inset:0;z-index:10000;background:rgba(5,8,20,0.96);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:linear-gradient(160deg,#1A1040,#0E1628);border:1px solid rgba(108,71,255,0.3);border-radius:28px;padding:40px 28px 32px;width:100%;max-width:340px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+    <svg style="width:72px;height:72px;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 16px rgba(244,196,48,0.4));" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="40" fill="#1A1040"/><ellipse cx="40" cy="42" rx="22" ry="20" fill="#d4af37" opacity=".95"/><ellipse cx="40" cy="43" rx="16" ry="15" fill="#e8c97a"/><ellipse cx="27" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="53" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="34" cy="40" rx="3.5" ry="3" fill="#6C47FF"/><ellipse cx="46" cy="40" rx="3.5" ry="3" fill="#6C47FF"/><circle cx="35" cy="39.5" r="1.3" fill="#fff"/><circle cx="47" cy="39.5" r="1.3" fill="#fff"/><ellipse cx="40" cy="46" rx="3" ry="2" fill="#4C2FD4"/><path d="M37 48.5 Q40 51 43 48.5" stroke="#4C2FD4" stroke-width="1.5" fill="none"/><path d="M28 26 L32 20 L40 25 L48 20 L52 26" stroke="#d4af37" stroke-width="2.5" fill="none"/><circle cx="28" cy="26" r="2.5" fill="#d4af37"/><circle cx="40" cy="25" r="2.5" fill="#d4af37"/><circle cx="52" cy="26" r="2.5" fill="#d4af37"/></svg>
+    <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#9F80FF,#F4C430);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:6px;">Lionboy Lucky 7</div>
+    <div style="font-size:.52rem;letter-spacing:4px;color:rgba(168,180,216,0.6);font-weight:700;text-transform:uppercase;margin-bottom:28px;">TAMBOLA LIVE</div>
+    <div style="font-size:.75rem;color:rgba(168,180,216,0.55);margin-bottom:28px;line-height:1.6;">By entering you confirm you are <b style="color:rgba(168,180,216,0.8);">18+</b> and agree to our fair play rules.</div>
+    <button onclick="acceptWelcome()" style="width:100%;padding:17px;background:linear-gradient(135deg,#6C47FF,#9F80FF);color:#fff;border:none;border-radius:16px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:2px;box-shadow:0 6px 28px rgba(108,71,255,0.5);cursor:pointer;">I ACCEPT</button>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="loading">
+  <svg class="ld-lion" viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="42" rx="22" ry="20" fill="#d4af37"/><ellipse cx="40" cy="43" rx="16" ry="15" fill="#e8c97a"/><ellipse cx="27" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="53" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="34" cy="40" rx="3.5" ry="3" fill="#6C47FF"/><ellipse cx="46" cy="40" rx="3.5" ry="3" fill="#6C47FF"/><circle cx="35" cy="39.5" r="1.3" fill="#fff"/><circle cx="47" cy="39.5" r="1.3" fill="#fff"/><ellipse cx="40" cy="46" rx="3" ry="2" fill="#4C2FD4"/><path d="M37 48.5 Q40 51 43 48.5" stroke="#4C2FD4" stroke-width="1.5" fill="none"/><path d="M28 26 L32 20 L40 25 L48 20 L52 26" stroke="#d4af37" stroke-width="2.5" fill="none"/><circle cx="28" cy="26" r="2.5" fill="#d4af37"/><circle cx="40" cy="25" r="2.5" fill="#d4af37"/><circle cx="52" cy="26" r="2.5" fill="#d4af37"/></svg>
+  <div class="ld-title">Lionboy Lucky 7</div>
+  <div class="ld-sub">Connecting to live server...</div>
+  <div class="ld-bar"><div class="ld-prog"></div></div>
+  <div id="loading-error" style="display:none;max-width:280px;text-align:center;font-size:.78rem;color:var(--red);background:var(--red2);border:1px solid rgba(255,71,87,.3);border-radius:8px;padding:10px 14px;margin-top:6px;"></div>
+</div>
+
+<canvas id="cnf"></canvas>
+<div id="toast"></div>
+
+<!-- WIN OVERLAY -->
+<div class="ov" id="win-ov">
+  <div class="wbox">
+    <span class="wtroph">🏆</span>
+    <div class="wtitle">WINNER!</div>
+    <div class="wmode" id="wmod"></div>
+    <div class="wname" id="wnm"></div>
+    <div class="wprize" id="wprize"></div>
+    <div class="wstatus" id="wst"></div>
+    <button class="wclose" onclick="closeWin()">🎉 Continue</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="ov" id="loginov">
+  <div id="loginbox">
+    <h2>⚙️ Admin Login</h2>
+    <p>Secured by Firebase Auth</p>
+    <input class="inp" id="lid" type="email" placeholder="Email" autocomplete="username">
+    <input class="inp" id="lpw" type="password" placeholder="Password" autocomplete="current-password">
+    <button class="gbtn" id="login-btn" onclick="doLogin()">Login</button>
+    <button class="cbtn" onclick="closeLogin()">Cancel</button>
+    <div id="lerr"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="ov" id="modov" onclick="if(event.target===this)closeModal()">
+  <div id="modbox"><h3 id="mttl"></h3><div id="mbdy"></div><div class="macts" id="mact"></div></div>
+</div>
+
+<!-- T&C MODAL -->
+<div class="ov" id="tc-ov" onclick="if(event.target===this)closeTc()">
+  <div class="tc-modal">
+    <div class="tc-modal-header">
+      <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#111;margin-bottom:2px;">Terms &amp; Conditions</div>
+      <div style="font-size:.68rem;color:#888;margin-bottom:0;">Lionboy Lucky 7 — Tambola Live</div>
+      <button onclick="closeTc()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.2rem;color:#999;cursor:pointer;line-height:1;">✕</button>
+    </div>
+    <div class="tc-modal-body">
+      <div class="tc-rule-item"><span class="tc-rule-num">1</span><span>Participants must be <b>18 years of age or older</b>.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">2</span><span>Each ticket is valid for <b>one game/session only</b> and cannot be reused unless stated otherwise.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">3</span><span>The game is conducted through a <b>custom-coded, open-source software system</b> designed to ensure transparency and fair gameplay.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">4</span><span>All game outcomes are generated and processed <b>solely by the software</b>. No manual intervention is made to influence results.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">5</span><span>Winners are determined strictly according to the <b>published game rules</b> and the software's programmed logic.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">6</span><span>Any attempt to <b>manipulate, exploit, automate, reverse-engineer, tamper with, or interfere</b> with the software, platform, or game process will result in immediate disqualification and may lead to account suspension.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">7</span><span>Tickets purchased <b>after a game has started</b> are not valid for that ongoing game.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">8</span><span>In the event of technical issues, server interruptions, or unforeseen circumstances, the organizer reserves the right to <b>pause, restart, reschedule, or cancel</b> a game if necessary.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">9</span><span>The organizer's decision regarding gameplay, technical matters, winner verification, and disputes is <b>final and binding</b>.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">10</span><span>Participants are responsible for ensuring compliance with all <b>applicable local laws and regulations</b> before participating.</span></div>
+      <div class="tc-rule-item"><span class="tc-rule-num">11</span><span>By participating, users confirm that they have <b>read, understood, and agreed</b> to these Terms &amp; Conditions.</span></div>
+      <div class="tc-fp-block">
+        <div class="tc-fp-title">Fair Play Commitment</div>
+        <div class="tc-fp-item">Open-source game logic for transparency.</div>
+        <div class="tc-fp-item">Equal gameplay conditions for all participants.</div>
+        <div class="tc-fp-item">No hidden algorithms or manual result manipulation.</div>
+        <div class="tc-fp-item">Continuous monitoring to detect and prevent cheating, abuse, or exploitation.</div>
+      </div>
+      <div style="font-size:.68rem;color:#aaa;text-align:center;margin-top:14px;line-height:1.6;">
+        Lionboy Lucky 7 &nbsp;&middot;&nbsp; Powered by <b style="color:var(--g3);">INFINIT HP</b><br>
+        Tambola is a legal skill-based game in India.
+      </div>
+    </div>
+    <div class="tc-modal-footer-btn">
+      <button onclick="acceptTcAndClose()" class="tc-accept-btn">I Have Read and Accept</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM -->
+<div class="ov" id="confirmov">
+  <div class="confirm-box">
+    <h3 id="conf-title">Are you sure?</h3>
+    <p id="conf-msg"></p>
+    <div class="confirm-btns">
+      <button class="btn-no" onclick="closeConfirm()">No</button>
+      <button class="btn-yes" id="conf-yes">Yes</button>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu-bg" onclick="closeMenu()"></div>
+<div id="menu">
+  <div class="m-head">
+    <svg class="m-lion" viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="42" rx="22" ry="20" fill="#d4af37"/><ellipse cx="40" cy="43" rx="16" ry="15" fill="#e8c97a"/><ellipse cx="27" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="53" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="34" cy="40" rx="3.5" ry="3" fill="#fff"/><ellipse cx="46" cy="40" rx="3.5" ry="3" fill="#fff"/><circle cx="35" cy="39.5" r="1.3" fill="#6C47FF"/><circle cx="47" cy="39.5" r="1.3" fill="#6C47FF"/><ellipse cx="40" cy="46" rx="3" ry="2" fill="#4C2FD4"/><path d="M28 26 L32 20 L40 25 L48 20 L52 26" stroke="#d4af37" stroke-width="2.5" fill="none"/><circle cx="28" cy="26" r="2.5" fill="#d4af37"/><circle cx="40" cy="25" r="2.5" fill="#d4af37"/><circle cx="52" cy="26" r="2.5" fill="#d4af37"/></svg>
+    <div><div class="m-brand">Lionboy Lucky 7</div><span class="m-sub">TAMBOLA LIVE</span></div>
+    <button class="m-x" onclick="closeMenu()">✕</button>
+  </div>
+  <div class="m-sec">
+    <div class="m-lbl">Navigation</div>
+    <button class="m-item on" id="mi-home" onclick="go('home')">Home</button>
+    <button class="m-item" id="mi-live" onclick="go('live')" style="display:none;">Live Game</button>
+    <button class="m-item" id="mi-dashboard" onclick="go('dashboard')">Ticket Status</button>
+    <button class="m-item" id="mi-upcoming" onclick="go('upcoming')">Upcoming</button>
+    <button class="m-item" id="mi-previous" onclick="go('previous')">Previous</button>
+  </div>
+  <div class="m-div"></div>
+  <div class="m-sec">
+    <div class="m-lbl">Appearance</div>
+    <div class="m-theme"><span>🌙 Dark Mode</span><button class="tsw" id="tsw" onclick="toggleTheme()"></button></div>
+  </div>
+  <div class="m-div"></div>
+  <div class="m-sec" id="admin-menu-sec">
+    <div class="m-lbl">Admin</div>
+    <button class="m-admin-btn" onclick="openLogin()">⚙️</button>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-brand" onclick="go('home')">
+    <svg class="tb-logo" viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="42" rx="22" ry="20" fill="#d4af37"/><ellipse cx="40" cy="43" rx="16" ry="15" fill="#e8c97a"/><ellipse cx="27" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="53" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="34" cy="40" rx="3.5" ry="3" fill="#fff"/><ellipse cx="46" cy="40" rx="3.5" ry="3" fill="#fff"/><circle cx="35" cy="39.5" r="1.3" fill="#6C47FF"/><circle cx="47" cy="39.5" r="1.3" fill="#6C47FF"/><ellipse cx="40" cy="46" rx="3" ry="2" fill="#4C2FD4"/><path d="M37 48.5 Q40 51 43 48.5" stroke="#4C2FD4" stroke-width="1.5" fill="none"/><path d="M28 26 L32 20 L40 25 L48 20 L52 26" stroke="#d4af37" stroke-width="2.5" fill="none"/><circle cx="28" cy="26" r="2.5" fill="#d4af37"/><circle cx="40" cy="25" r="2.5" fill="#d4af37"/><circle cx="52" cy="26" r="2.5" fill="#d4af37"/></svg>
+    <div><div class="tb-name">Lionboy Lucky 7</div><span class="tb-sub">TAMBOLA LIVE</span></div>
+  </div>
+  <div class="tb-right">
+    <div class="live-pill" id="lp"><span class="ldot"></span>LIVE</div>
+    <button class="hbtn" onclick="toggleMenu()">☰</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home-pg" class="pg on">
+  <div class="hero-section">
+    <div class="hero-dots"></div>
+    <svg class="hero-logo-img" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="40" fill="#1A1040"/><ellipse cx="40" cy="42" rx="22" ry="20" fill="#d4af37" opacity=".95"/><ellipse cx="40" cy="43" rx="16" ry="15" fill="#e8c97a"/><ellipse cx="27" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="53" cy="32" rx="5" ry="6" fill="#d4af37"/><ellipse cx="34" cy="40" rx="3.5" ry="3" fill="#6C47FF"/><ellipse cx="46" cy="40" rx="3.5" ry="3" fill="#6C47FF"/><circle cx="35" cy="39.5" r="1.3" fill="#fff"/><circle cx="47" cy="39.5" r="1.3" fill="#fff"/><ellipse cx="40" cy="46" rx="3" ry="2" fill="#4C2FD4"/><path d="M37 48.5 Q40 51 43 48.5" stroke="#4C2FD4" stroke-width="1.5" fill="none"/><path d="M28 26 L32 20 L40 25 L48 20 L52 26" stroke="#d4af37" stroke-width="2.5" fill="none"/><circle cx="28" cy="26" r="2.5" fill="#d4af37"/><circle cx="40" cy="25" r="2.5" fill="#d4af37"/><circle cx="52" cy="26" r="2.5" fill="#d4af37"/></svg>
+    <div class="hero-title">LIONBOY LUCKY 7</div>
+    <div class="hero-sub">TAMBOLA LIVE</div>
+  </div>
+  <div class="status-pill-wrap">
+    <div class="status-pill" id="status-pill" onclick="if(G&&G.status==='live')go('live')">
+      <span class="sp-dot coming" id="sp-dot"></span>
+      <span id="sp-txt">Connecting...</span>
+    </div>
+  </div>
+  <!-- BOOK BUTTON -->
+  <div id="book-btn-wrap" style="display:none;padding:10px 16px 0;">
+    <button onclick="openBookingPage()" style="width:100%;padding:14px;background:linear-gradient(135deg,#6C47FF,#9F80FF);color:#fff;border:none;border-radius:var(--r2);font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:1px;box-shadow:0 4px 20px rgba(108,71,255,0.4);display:flex;align-items:center;justify-content:center;gap:10px;">🎫 Book Your Ticket!</button>
+  </div>
+  <div id="notices-sec"></div>
+  <div id="soc-sec" class="soc-row" style="display:none;"></div>
+  <!-- COMING SOON -->
+  <div id="coming-soon-sec" style="display:none;">
+    <div class="coming-soon-wrap">
+      <div class="cs-icon">🎰</div>
+      <div class="cs-title">New Game Coming Soon</div>
+      <div class="cs-sub">The next Tambola session hasn't been announced yet. Stay tuned!</div>
+    </div>
+  </div>
+  <!-- ACTIVE GAME -->
+  <div id="ghero" style="display:none;">
+    <div class="prize-banner" id="prize-banner">
+      <img id="himg" class="pb-banner-img" src="" alt="">
+      <div class="pb-header">
+        <div><span id="hbadge" class="pb-tag">FREE</span><div class="pb-title" id="hname" style="margin-top:6px;"></div></div>
+        <div class="pb-pool" id="hpool-display"></div>
+      </div>
+      <div class="pb-body">
+        <div class="pb-meta" id="hbadge-row"></div>
+        <div class="pb-desc" id="hdesc"></div>
+        <div id="live-ind" style="display:none;margin-bottom:12px;"><span class="live-now-badge" onclick="go('live')"><span class="ldot"></span>🔴 LIVE NOW — Tap to Watch</span></div>
+        <div class="pb-prizes" id="hprize-rows"></div>
+        <div class="pb-info" id="hinfo"></div>
+        <div class="cd-wrap" id="cdrow">
+          <div class="cdu"><div class="cdn" id="cdh">--</div><div class="cdl">Hrs</div></div>
+          <div class="cdu"><div class="cdn" id="cdm">--</div><div class="cdl">Min</div></div>
+          <div class="cdu"><div class="cdn" id="cds">--</div><div class="cdl">Sec</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Search above tickets -->
+    <div class="msearch-wrap" style="padding:14px 14px 0;">
+      <div class="msearch-box">
+        <input type="number" id="home-search" placeholder="Search your ticket no..." min="1" max="200" onkeydown="if(event.key==='Enter')addSearch('home')">
+        <button onclick="addSearch('home')">Find</button>
+      </div>
+      <div id="home-search-res" class="msearch-results"></div>
+    </div>
+    <div class="sec-hd">All Tickets</div>
+    <div class="tix-list" id="htix"></div>
+  </div>
+  <!-- T&C link — home page only -->
+  <div style="text-align:center;padding:16px 20px 28px;border-top:1px solid var(--brd);margin-top:8px;">
+    <button onclick="openTc()" style="background:none;border:none;color:var(--t3);font-size:.78rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:underline;text-underline-offset:3px;">
+      Terms &amp; Conditions
+    </button>
+    <div style="font-size:.62rem;color:var(--t4);margin-top:6px;">Powered by <b style="color:var(--g3);">INFINIT HP</b></div>
+  </div>
+</div>
+
+<!-- LIVE -->
+<div id="live-pg" class="pg">
+  <div class="live-top">
+    <div class="lt-dots"></div>
+    <div class="lt-circle"></div>
+    <div class="lt-circle2"></div>
+    <div class="lt-label">CURRENT NUMBER</div>
+    <div class="lt-num" id="bnum">--</div>
+    <div class="lt-call" id="bdlg">Waiting for first number...</div>
+    <div class="lt-prev">
+      <span class="lt-prev-label">Recent:</span>
+      <div class="lt-prev-nums" id="lt-prev-nums"></div>
+    </div>
+  </div>
+  <div class="stat-strip">
+    <div class="ss"><div class="ss-v" id="stc">0</div><div class="ss-l">Called</div></div>
+    <div class="ss"><div class="ss-v" id="str">90</div><div class="ss-l">Left</div></div>
+    <div class="ss"><div class="ss-v" id="stp">0</div><div class="ss-l">Players</div></div>
+    <div class="ss"><div class="ss-v" id="ste">00:00</div><div class="ss-l">Time</div></div>
+  </div>
+  <div class="act-bar">
+    <button class="shr-btn" onclick="shareGame()">📤 Share</button>
+    <button class="shr-btn" id="muteBtn" onclick="toggleMute()" style="margin-left:6px;">🔊 Sound</button>
+    <div class="vc-badge" id="vcbadge"><span class="vcdot"></span>👁 <span id="vcn">0</span> watching</div>
+  </div>
+  <div class="board-section"><div class="board-ttl">Number Board 1–90</div><div class="board-grid" id="board"></div></div>
+  <div class="tix-chart-section"><div class="board-ttl">Ticket Status</div><div id="tix-chart-live" class="tix-chart"></div></div>
+  <div style="padding:0 14px 8px;"><div class="sec-hd" style="padding:8px 0 6px;">🏆 Winners</div><div id="lwins"><p style="color:var(--t3);font-size:.84rem;font-style:italic;">No winners yet...</p></div></div>
+  <div class="msearch-wrap">
+    <div class="msearch-box">
+      <input type="number" id="live-search" placeholder="Find your ticket no..." min="1" max="200" onkeydown="if(event.key==='Enter')addSearch('live')">
+      <button onclick="addSearch('live')">Track</button>
+    </div>
+    <div id="live-search-res" class="msearch-results"></div>
+  </div>
+  <div class="sec-hd" style="padding:14px 14px 8px;">All Tickets</div>
+  <div class="tix-list" id="ltix" style="padding:0 14px 24px;"></div>
+</div>
+
+<!-- VISITOR DASHBOARD (read-only) -->
+<div id="dashboard-pg" class="pg">
+  <div style="background:linear-gradient(135deg,#0D1030,#1A1040);padding:20px 16px 16px;border-bottom:1px solid var(--brd);">
+    <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--t);margin-bottom:2px;">Ticket Dashboard</div>
+    <div style="font-size:.72rem;color:var(--t3);" id="bk-game-name">Loading...</div>
+  </div>
+  <!-- Name search -->
+  <div style="padding:14px 14px 6px;">
+    <div class="bk-search-box">
+      <span style="font-size:.85rem;color:var(--t3);flex-shrink:0;">Search</span>
+      <input type="text" id="bk-search-inp" placeholder="Your name..." oninput="bkSearch(this.value)">
+      <button class="bk-search-clear" onclick="bkClearSearch()">x</button>
+    </div>
+    <div id="bk-found"></div>
+  </div>
+  <!-- Numbered ticket grid (read-only) -->
+  <div style="padding:6px 14px 0;">
+    <div class="sec-hd" style="padding:0 0 10px;">Ticket Chart</div>
+    <div id="vis-bk-chart" class="vis-bk-grid"></div>
+  </div>
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 14px 0;">
+    <div class="bk-stat-card"><div class="bk-stat-val" id="bk-total">-</div><div class="bk-stat-lbl">Total</div></div>
+    <div class="bk-stat-card"><div class="bk-stat-val" id="bk-booked">-</div><div class="bk-stat-lbl">Booked</div></div>
+    <div class="bk-stat-card"><div class="bk-stat-val" id="bk-avail">-</div><div class="bk-stat-lbl">Available</div></div>
+  </div>
+  <!-- Sheet breakdown -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 14px 24px;">
+    <div class="bk-sheet-card single"><div class="bk-sheet-val" id="bk-single-count">-</div><div class="bk-sheet-lbl">Single</div></div>
+    <div class="bk-sheet-card half"><div class="bk-sheet-val" id="bk-half-count">-</div><div class="bk-sheet-lbl">Half Sheet</div></div>
+    <div class="bk-sheet-card full"><div class="bk-sheet-val" id="bk-full-count">-</div><div class="bk-sheet-lbl">Full Sheet</div></div>
+  </div>
+</div>
+<!-- UPCOMING -->
+<div id="upcoming-pg" class="pg">
+  <div class="sec-hd" style="padding:18px 16px 10px;">Upcoming Games</div>
+  <div class="ev-wrap" id="ulist"><p style="color:var(--t3);font-size:.88rem;font-style:italic;">No upcoming games.</p></div>
+</div>
+
+<!-- PREVIOUS -->
+<div id="previous-pg" class="pg">
+  <div class="sec-hd" style="padding:18px 16px 10px;">Previous Games</div>
+  <div class="ev-wrap" id="plist"><p style="color:var(--t3);font-size:.88rem;font-style:italic;">No previous games.</p></div>
+  <div id="pwrap" style="display:none;"><div class="sec-hd" style="padding:14px 16px 10px;">Past Winners</div><div class="ev-wrap" id="pwlist"></div></div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-pg" class="adm-pg">
+  <div class="adm-wrap">
+
+    <!-- NEW GAME -->
+    <div id="ap-new" class="ap on">
+      <div class="pt">New Game</div>
+      <div class="fr2">
+        <div class="fg"><label>Game Name</label><input class="fi" id="ngn" placeholder="Saturday Night Tambola"></div>
+        <div class="fg"><label>Type</label><select class="fs" id="ngt" onchange="tgPaid()"><option value="free">FREE</option><option value="paid">PAID</option></select></div>
+      </div>
+      <div id="ng-paid" style="display:none;">
+        <div class="fr3">
+          <div class="fg"><label>Price (₹)</label><input class="fi" id="ngprice" type="number" value="50"></div>
+          <div class="fg"><label>Prize Pool (₹)</label><input class="fi" id="ngpool" type="number" value="1000"></div>
+          <div class="fg"><label>Tickets</label><input class="fi" id="ngtix" type="number" value="15" min="1" max="200"></div>
+        </div>
+      </div>
+      <div id="ng-free">
+        <div class="fr2">
+          <div class="fg"><label>Total Tickets</label><input class="fi" id="ngtixf" type="number" value="15" min="1" max="200"></div>
+          <div class="fg"><label>Prize Pool (₹)</label><input class="fi" id="ngpoolf" type="number" value="0"></div>
+        </div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>Booking Date</label><input class="fi" id="ngbd" type="date"></div>
+        <div class="fg"><label>Booking Time</label><input class="fi" id="ngbt" type="time" value="18:00"></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>Start Date</label><input class="fi" id="ngsd" type="date"></div>
+        <div class="fg"><label>Start Time</label><input class="fi" id="ngst" type="time" value="20:00"></div>
+      </div>
+      <div class="fg"><label>Description</label><textarea class="ft" id="ngdesc" placeholder="Win exciting prizes!"></textarea></div>
+      <div class="fg">
+        <label>Banner Image</label>
+        <div class="banner-sel-grid" id="banner-sel-grid"></div>
+        <input class="fi" id="ngbanner-url" placeholder="Or paste image URL..." style="margin-top:6px;">
+      </div>
+      <div style="margin:12px 0 6px;">
+        <div class="sec-hd" style="padding:0 0 8px;font-size:.62rem;">Winner Modes & Prize Amounts (₹)</div>
+        <div class="wm-grid" id="ng-wm"></div>
+      </div>
+      <button class="abtn" onclick="createGame()">Create Game</button>
+    </div>
+
+    <!-- MANAGE -->
+    <div id="ap-manage" class="ap"><div class="pt">Manage Games</div><div id="mlist"></div></div>
+
+    <!-- BOOKINGS -->
+    <div id="ap-bookings" class="ap">
+      <div class="pt">Bookings Manager</div>
+      <div id="adm-bk-body"><p style="color:var(--t3);font-size:.88rem;font-style:italic;">No active game.</p></div>
+    </div>
+
+    <!-- ONGOING -->
+    <div id="ap-ongoing" class="ap"><div class="pt">Ongoing</div><div id="oglist"></div></div>
+
+    <!-- LIVE CONTROL -->
+    <div id="ap-lctrl" class="ap"><div class="pt">Live Control</div><div id="lctrl"><p style="color:var(--t3);font-size:.88rem;font-style:italic;">No live game.</p></div></div>
+
+    <!-- NOTICES -->
+    <div id="ap-notice" class="ap">
+      <div class="pt">Notice Board</div>
+      <div class="fg"><label>New Notice</label><textarea class="ft" id="ninp" placeholder="Your announcement..." style="min-height:80px;"></textarea></div>
+      <button class="abtn" onclick="addNotice()" style="margin-bottom:16px;">+ Add Notice</button>
+      <div class="sec-hd" style="padding:0 0 8px;">Active Notices</div>
+      <div id="notices-admin-list"><p style="color:var(--t3);font-size:.84rem;font-style:italic;">No notices.</p></div>
+    </div>
+
+    <!-- SOCIAL -->
+    <div id="ap-social" class="ap">
+      <div class="pt">Social Links</div>
+      <div class="fg"><label>WhatsApp</label><div style="display:flex;gap:6px;"><input class="fi" id="wainp" placeholder="https://chat.whatsapp.com/..." style="flex:1;"><button class="bsm bs" onclick="saveSoc('wa')">Save</button><button class="bsm bd" onclick="clrSoc('wa')">✕</button></div></div>
+      <div class="fg" style="margin-top:8px;"><label>Instagram</label><div style="display:flex;gap:6px;"><input class="fi" id="iginp" placeholder="https://instagram.com/..." style="flex:1;"><button class="bsm bs" onclick="saveSoc('ig')">Save</button><button class="bsm bd" onclick="clrSoc('ig')">✕</button></div></div>
+    </div>
+
+    <!-- BANNERS -->
+    <div id="ap-banners" class="ap">
+      <div class="pt">Custom Banners</div>
+      <p style="color:var(--t3);font-size:.84rem;margin-bottom:14px;">Set 5 custom banner images.</p>
+      <div id="banner-inputs"></div>
+      <button class="abtn" onclick="saveBanners()">Save Banners</button>
+    </div>
+
+    <!-- FEEDBACK / SECRET -->
+    <div id="ap-fb" class="ap">
+      <div class="pt">Feedback</div>
+      <div id="fbwrap">
+        <p style="color:var(--t3);font-size:.84rem;margin-bottom:14px;">Send us your feedback!</p>
+        <div class="fg"><label>Name</label><input class="fi" id="fbnm" placeholder="Your name"></div>
+        <div class="fg"><label>Message</label><textarea class="ft" id="fbmsg" placeholder="Type here..." oninput="chkSec(this.value)"></textarea></div>
+        <button class="abtn" onclick="toast('Sent! Thank you 😊')">Send</button>
+      </div>
+      <div id="secp">
+        <div class="secban">⚠️ CONFIDENTIAL — Winner Override Panel</div>
+        <div id="secgames"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ════ CONSTANTS ════ */
+const AUDIO_BASE='https://lionboy777.github.io/ll7-audio/';
+
+/* Welcome popup — plays welcome.mp3, unlocks browser audio for entire session */
+function acceptWelcome(){
+  const ov=document.getElementById('welcome-ov');
+  if(ov)ov.style.display='none';
+  // Mark as accepted so it doesn't show again this session
+  sessionStorage.setItem('ll7_accepted','1');
+  L.audioUnlocked=true;
+  // Play welcome.mp3 — this tap also unlocks browser autoplay for the session
+  const a=new Audio(AUDIO_BASE+'welcome.mp3');
+  a.play().catch(()=>{});
+  // FIX: the loading screen (z-index 9999) sits *under* this popup
+  // (z-index 10000). If Firebase already resolved while the popup was
+  // covering the screen, startListeners() already called hideLoading()
+  // and this is a no-op — fine. But we must NOT force-hide loading here
+  // if Firebase hasn't responded yet, or a genuine connection failure
+  // gets silently masked instead of showing the 10s error message.
+  // Only nudge it if data has actually arrived.
+  if(typeof G!=='undefined'&&G&&typeof hideLoading==='function')hideLoading();
+}
+
+/* Play book.mp3 when site loads and tickets are available for booking */
+function playBookSound(){
+  if(!L.audioUnlocked)return;
+  const a=new Audio(AUDIO_BASE+'book.mp3');
+  a.play().catch(()=>{});
+}
+
+// If already accepted this session (e.g. page refresh), skip popup
+if(sessionStorage.getItem('ll7_accepted')==='1'){
+  const ov=document.getElementById('welcome-ov');
+  if(ov)ov.style.display='none';
+  L.audioUnlocked=true;
+}
+const SEC_KEY='FREEMONEY69';
+const MODES=[
+  {id:'early5',name:'Early 5',desc:'First 5 numbers crossed'},
+  {id:'topline',name:'Top Line',desc:'All 5 in top row'},
+  {id:'midline',name:'Middle Line',desc:'All 5 in middle row'},
+  {id:'botline',name:'Bottom Line',desc:'All 5 in bottom row'},
+  {id:'corners',name:'Corners',desc:'First & last of top & bottom (4 nums)'},
+  {id:'sixcorners',name:'6 Corners',desc:'First & last of all 3 rows (6 nums)'},
+  {id:'pyramid',name:'Pyramid',desc:'3rd top, 2nd&4th mid, 1st,3rd,5th bot'},
+  {id:'plus',name:'Plus Sign',desc:'Middle row + middle column'},
+  {id:'diamond',name:'Diamond',desc:'3rd of 1st&3rd row, 1st&last of mid'},
+  {id:'fullhouse',name:'Full House',desc:'All 15 numbers — MAIN PRIZE'}
+];
+const DC=['','#F4C430','#6C47FF','#FF4757','#00C896','#FF6B35','#B44FFF','#FF3D71','#4FACFE','#00C896'];
+
+/* ════ STATE ════ */
+let G=null;            // current game (from Firebase)
+let L={                // local only state
+  isAdmin:false,
+  theme:'light',
+  banners:['','','','',''],
+  selectedBanner:-1,
+  searched:{live:[],dash:[],home:[]},
+  audioLock:false,
+  audioOk:true,
+  audioUnlocked:false,
+  muted:(localStorage.getItem('ll7_muted')==='1'),
+  bookSoundPlayed:false,
+  calling:false,
+  callTmr:null,
+  elTmr:null,
+  lastWinCount:0,
+  autoStarted:false,
+  lastAdminCalled:null,
+  lastShown:null,
+};
+let _aA=null,_aB=null; // audio tracks
+
+/* ════ AUDIO — STRICT SEQUENTIAL ════ */
+// L.audioUnlocked: becomes true after one successful play() triggered by a
+// real user gesture. Mobile browsers block autoplay until this happens once
+// per page session. We no longer treat a single failure as fatal forever —
+// audioOk resets per-attempt so a transient/network failure on one number
+// doesn't silence the rest of the game.
+function unlockAudio(){
+  if(L.audioUnlocked||L.muted)return;
+  try{
+    const a=new Audio(AUDIO_BASE+'start_sound.mp3');
+    a.volume=0;
+    const p=a.play();
+    if(p&&p.then){
+      p.then(()=>{L.audioUnlocked=true;a.pause();a.currentTime=0;}).catch(()=>{});
+    }else{
+      L.audioUnlocked=true;
+    }
+  }catch(e){}
+}
+function _play(url,onEnd){
+  // If muted, skip real playback but still resolve the callback at roughly
+  // the same pace, so the calling loop's timing/pauses stay identical
+  // whether sound is on or off — muting must never speed up or break calling.
+  if(L.muted){
+    setTimeout(()=>{if(onEnd)onEnd();},1200);
+    return null;
+  }
+  const a=new Audio(url);
+  a.onended=()=>{L.audioOk=true;if(onEnd)onEnd();};
+  a.onerror=()=>{
+    L.audioOk=false;
+    showAudioWarning();
+    setTimeout(()=>{if(onEnd)onEnd();},2500);
+  };
+  a.play().then(()=>{L.audioOk=true;L.audioUnlocked=true;}).catch(()=>{
+    // Per-attempt failure only — does NOT permanently disable audio for
+    // the rest of the game. Most common cause: this play() wasn't
+    // triggered inside/close enough to a user gesture (autoplay block).
+    L.audioOk=false;
+    showAudioWarning();
+    setTimeout(()=>{if(onEnd)onEnd();},2500);
+  });
+  return a;
+}
+function showAudioWarning(){
+  if(L.muted)return;
+  const btn=document.getElementById('muteBtn');
+  if(btn&&!L.audioUnlocked)btn.innerHTML='🔈 Tap for sound';
+}
+function toggleMute(){
+  L.muted=!L.muted;
+  localStorage.setItem('ll7_muted',L.muted?'1':'0');
+  if(L.muted){stopAudio();}
+  else{unlockAudio();}
+  const btn=document.getElementById('muteBtn');
+  if(btn)btn.innerHTML=L.muted?'🔇 Muted':'🔊 Sound';
+}
+// Apply saved mute preference to the button on load
+document.addEventListener('DOMContentLoaded',()=>{
+  const btn=document.getElementById('muteBtn');
+  if(btn)btn.innerHTML=L.muted?'🔇 Muted':'🔊 Sound';
+});
+function stopAudio(){
+  try{if(_aA){_aA.pause();_aA=null;}}catch(e){}
+  try{if(_aB){_aB.pause();_aB=null;}}catch(e){}
+  L.audioLock=false;
+}
+/* Start: start_sound.mp3 → after 2s overlap start.mp3 → when start.mp3 ends → cb */
+function playStart(cb){
+  stopAudio();
+  _aA=_play(AUDIO_BASE+'start_sound.mp3',null);
+  setTimeout(()=>{
+    _aB=_play(AUDIO_BASE+'start.mp3',()=>{
+      try{if(_aA)_aA.pause();}catch(e){}
+      _aA=null;_aB=null;if(cb)cb();
+    });
+  },2000);
+}
+/* Number: play mp3 → silent gap → cb. Lock prevents any overlap. */
+function playNum(n,cb){
+  // Don't recursively wait — if locked, caller manages the wait
+  L.audioLock=true;
+  _aB=_play(AUDIO_BASE+n+'.mp3',()=>{
+    _aB=null;
+    // 1.5s gap after audio ends before releasing lock
+    setTimeout(()=>{L.audioLock=false;if(cb)cb();},1500);
+  });
+}
+/* Winner: winner_sound.mp3 → after 1.5s overlap winner.mp3 */
+function playWin(){
+  stopAudio();
+  _aA=_play(AUDIO_BASE+'winner_sound.mp3',null);
+  setTimeout(()=>{
+    _aB=_play(AUDIO_BASE+'winner.mp3',()=>{
+      try{if(_aA)_aA.pause();}catch(e){}
+      _aA=null;_aB=null;
+    });
+  },1500);
+}
+
+/* ════ TAMBOLA CALL NICKNAMES ════ */
+const TAMBOLA_CALLS={
+  1:'Kelly\'s Eye — One!',2:'One Little Duck — Two!',3:'Cup of Tea — Three!',
+  4:'Knock at the Door — Four!',5:'Man Alive — Five!',6:'Half a Dozen — Six!',
+  7:'Lucky Seven!',8:'One Fat Lady — Eight!',9:'Doctor\'s Orders — Nine!',
+  10:'(Prime Minister\'s) Den — Ten!',11:'Legs Eleven!',12:'One Dozen — Twelve!',
+  13:'Unlucky for Some — Thirteen!',14:'Valentine\'s Day — Fourteen!',15:'Young and Keen — Fifteen!',
+  16:'Sweet Sixteen!',17:'Dancing Queen — Seventeen!',18:'Now You Can Vote — Eighteen!',
+  19:'Goodbye Teens — Nineteen!',20:'One Score — Twenty!',
+  21:'Key of the Door — Twenty One!',22:'Two Little Ducks — Twenty Two!',
+  23:'The Lord is My Shepherd — Twenty Three!',24:'Two Dozen — Twenty Four!',
+  25:'Duck and Dive — Twenty Five!',26:'Pick and Mix — Twenty Six!',
+  27:'Gateway to Heaven — Twenty Seven!',28:'In a State — Twenty Eight!',
+  29:'Rise and Shine — Twenty Nine!',30:'Dirty Gertie — Thirty!',
+  31:'Get Up and Run — Thirty One!',32:'Buckle My Shoe — Thirty Two!',
+  33:'Dirty Knees — Thirty Three!',34:'Ask for More — Thirty Four!',
+  35:'Jump and Jive — Thirty Five!',36:'Three Dozen — Thirty Six!',
+  37:'More than Eleven — Thirty Seven!',38:'Christmas Cake — Thirty Eight!',
+  39:'39 Steps — Thirty Nine!',40:'Life Begins — Forty!',
+  41:'Time for Fun — Forty One!',42:'Winnie the Pooh — Forty Two!',
+  43:'Down on Your Knees — Forty Three!',44:'Droopy Drawers — Forty Four!',
+  45:'Halfway There — Forty Five!',46:'Up to Tricks — Forty Six!',
+  47:'Four and Seven — Forty Seven!',48:'Four Dozen — Forty Eight!',
+  49:'PC — Forty Nine!',50:'Half a Century — Fifty!',
+  51:'Tweak of the Thumb — Fifty One!',52:'Danny La Rue — Fifty Two!',
+  53:'Stuck in a Tree — Fifty Three!',54:'Clean the Floor — Fifty Four!',
+  55:'Snakes Alive — Fifty Five!',56:'Was She Worth It — Fifty Six!',
+  57:'Heinz Varieties — Fifty Seven!',58:'Make Them Wait — Fifty Eight!',
+  59:'Brighton Line — Fifty Nine!',60:'Five Dozen — Sixty!',
+  61:'Baker\'s Bun — Sixty One!',62:'Turn the Screw — Sixty Two!',
+  63:'Tickle Me — Sixty Three!',64:'The Beatles — Sixty Four!',
+  65:'Old Age Pension — Sixty Five!',66:'Clickety Click — Sixty Six!',
+  67:'Made in Heaven — Sixty Seven!',68:'Saving Grace — Sixty Eight!',
+  69:'Either Way Up — Sixty Nine!',70:'Three Score and Ten — Seventy!',
+  71:'Bang on the Drum — Seventy One!',72:'Six Dozen — Seventy Two!',
+  73:'Queen Bee — Seventy Three!',74:'Candy Store — Seventy Four!',
+  75:'Strive and Strive — Seventy Five!',76:'Trombones — Seventy Six!',
+  77:'Sunset Strip — Seventy Seven!',78:'Heaven\'s Gate — Seventy Eight!',
+  79:'One More Time — Seventy Nine!',80:'Eight and Blank — Eighty!',
+  81:'Stop and Run — Eighty One!',82:'Straight on Through — Eighty Two!',
+  83:'Time for Tea — Eighty Three!',84:'Seven Dozen — Eighty Four!',
+  85:'Staying Alive — Eighty Five!',86:'Between the Sticks — Eighty Six!',
+  87:'Torquay in Devon — Eighty Seven!',88:'Two Fat Ladies — Eighty Eight!',
+  89:'Nearly There — Eighty Nine!',90:'Top of the Shop — Ninety!'
+};
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function pad(n){return String(n).padStart(2,'0');}
+function p3(n){return String(n).padStart(3,'0');}
+function shuf(a){return [...a].sort(()=>Math.random()-.5);}
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+let _tt;
+function toast(m,d=2600){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(_tt);_tt=setTimeout(()=>t.style.display='none',d);}
+function closeModal(){document.getElementById('modov').classList.remove('on');}
+function openModal(t,b,a){document.getElementById('mttl').textContent=t;document.getElementById('mbdy').innerHTML=b;document.getElementById('mact').innerHTML=a;document.getElementById('modov').classList.add('on');}
+let _cfCb=null;
+function confirm2(title,msg,cb){document.getElementById('conf-title').textContent=title;document.getElementById('conf-msg').textContent=msg;_cfCb=cb;document.getElementById('conf-yes').onclick=()=>{unlockAudio();closeConfirm();if(_cfCb)_cfCb();};document.getElementById('confirmov').classList.add('on');}
+function closeConfirm(){document.getElementById('confirmov').classList.remove('on');}
+function hideLoading(){const el=document.getElementById('loading');if(el){el.classList.add('hide');setTimeout(()=>el.style.display='none',600);}}
+
+/* ════ MENU / THEME / NAV ════ */
+function toggleMenu(){document.getElementById('menu').classList.toggle('on');document.getElementById('menu-bg').classList.toggle('on');}
+function closeMenu(){document.getElementById('menu').classList.remove('on');document.getElementById('menu-bg').classList.remove('on');}
+function toggleTheme(){
+  L.theme=L.theme==='light'?'dark':'light';
+  document.body.toggleAttribute('data-light',L.theme==='light');
+  localStorage.setItem('ll7_theme',L.theme);
+  document.getElementById('tsw').classList.toggle('on',L.theme==='dark');
+  const span=document.querySelector('.m-theme span');
+  if(span)span.textContent=L.theme==='light'?'🌙 Dark Mode':'☀️ Light Mode';
+}
+function openBookingPage(){
+  playBookSound();
+  go('dashboard');
+}
+function go(name){
+  if(name==='live')unlockAudio();
+  closeMenu();
+  document.querySelectorAll('.pg').forEach(p=>{p.style.display='none';p.classList.remove('on');});
+  document.getElementById('admin-pg').style.display='none';document.getElementById('admin-pg').classList.remove('on');
+  document.querySelectorAll('.m-item').forEach(b=>b.classList.remove('on'));
+  if(name==='admin'){document.getElementById('admin-pg').style.display='block';document.getElementById('admin-pg').classList.add('on');}
+  else{const p=document.getElementById(name+'-pg');if(p){p.style.display='block';p.classList.add('on');}
+    const mi=document.getElementById('mi-'+name);if(mi)mi.classList.add('on');
+    if(name==='upcoming')renderUpcoming();
+    if(name==='previous')renderPrevious();
+    if(name==='dashboard')renderDashboard();
+    if(name==='live')renderLivePage();
+    document.getElementById('vcbadge').classList.toggle('on',name==='live'&&L.isAdmin);
+  }
+}
+function showAP(name){
+  document.querySelectorAll('.ap').forEach(p=>p.classList.remove('on'));
+  const p=document.getElementById('ap-'+name);if(p)p.classList.add('on');
+  if(name==='manage')renderManage();
+  if(name==='ongoing')renderOngoing();
+  if(name==='lctrl')renderLCtrl();
+  if(name==='new'){renderNGWM();renderBannerSel();}
+  if(name==='bookings')renderAdmBookings();
+  if(name==='fb'){const m=document.getElementById('fbmsg');if(m)m.value='';document.getElementById('secp').classList.remove('on');document.getElementById('fbwrap').style.display='block';}
+  if(name==='notice')renderNoticesAdmin();
+  if(name==='banners')renderBannerInputs();
+  if(name==='social'){db.ref('social').once('value',s=>{const d=s.val()||{};document.getElementById('wainp').value=d.wa||'';document.getElementById('iginp').value=d.ig||'';});}
+}
+
+/* ════ FIREBASE AUTH LOGIN ════ */
+function openLogin(){closeMenu();document.getElementById('loginov').classList.add('on');}
+function closeLogin(){document.getElementById('loginov').classList.remove('on');const le=document.getElementById('lerr');le.textContent='';le.style.display='none';}
+function doLogin(){
+  const email=document.getElementById('lid').value.trim();
+  const pw=document.getElementById('lpw').value.trim();
+  const btn=document.getElementById('login-btn');
+  btn.textContent='Logging in...';btn.disabled=true;
+  auth.signInWithEmailAndPassword(email,pw)
+    .then(()=>{closeLogin();})
+    .catch(e=>{const le=document.getElementById('lerr');le.textContent='Login failed: '+e.message;le.style.display='block';btn.textContent='Login';btn.disabled=false;});
+}
+function logout(){auth.signOut();}
+document.getElementById('lpw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+/* Auth state listener */
+auth.onAuthStateChanged(user=>{
+  if(user){
+    L.isAdmin=true;
+    document.getElementById('admin-menu-sec').innerHTML=`<div class="m-lbl">Admin</div>
+      <button class="m-item" onclick="go('admin');showAP('new');">New Game</button>
+      <button class="m-item" onclick="go('admin');showAP('manage');">Manage Games</button>
+      <button class="m-item" onclick="go('admin');showAP('bookings');">Bookings</button>
+      <button class="m-item" onclick="go('admin');showAP('ongoing');">Ongoing</button>
+      <button class="m-item" onclick="go('admin');showAP('lctrl');">Live Control</button>
+      <button class="m-item" onclick="go('admin');showAP('notice');">Notices</button>
+      <button class="m-item" onclick="go('admin');showAP('social');">Social Links</button>
+      <button class="m-item" onclick="go('admin');showAP('banners');">Banners</button>
+      <button class="m-item" onclick="go('admin');showAP('fb');">Feedback</button>
+      <div class="m-div"></div>
+      <button class="m-item" onclick="logout()" style="color:var(--red);">Logout</button>`;
+    go('admin');renderNGWM();renderBannerSel();toast('Logged in as admin.');
+  } else {
+    L.isAdmin=false;
+    L.calling=false;
+    document.getElementById('admin-menu-sec').innerHTML=`<div class="m-lbl">Admin</div><button class="m-admin-btn" onclick="openLogin()">⚙️</button>`;
+  }
+});
+
+/* ════ FIREBASE LISTENERS ════ */
+function startListeners(){
+  /* Game */
+  db.ref('game').on('value',snap=>{
+    const prev=G?JSON.parse(JSON.stringify(G)):null;
+    G=snap.val();
+    if(G){
+      G.called=G.called?Object.values(G.called).filter(Boolean):[];
+      G.tickets=G.tickets||{};
+      G.winners=G.winners?Object.values(G.winners).filter(Boolean):[];
+      G.wm=G.wm||[];
+      G.wmPrizes=G.wmPrizes||{};
+      G.fw=G.fw||{};
+    }
+    updateState();
+    updateHero();
+    updateBoards();
+    updateStats();
+    renderVisTix();
+    checkNewWinners(prev);
+    if(G&&G.status==='live'){
+      if(!L.isAdmin&&G.called.length>0){
+        const n=G.called[G.called.length-1];
+        // Gate on the NUMBER itself, not just array length/lock timing —
+        // this is what stopped the "first call shows multiple numbers"
+        // bug: a burst of Firebase snapshots (e.g. called write followed
+        // quickly by an unrelated game-node write) could previously pass
+        // the length+lock check more than once for numbers already shown.
+        if(n!==L.lastShown){
+          L.lastShown=n;
+          showNumber(n);
+          if(!L.audioLock)playNum(n,()=>{});
+        }
+      }
+      // Admin: suppress duplicate show for the number they just called via callNext()
+      if(L.isAdmin&&G.called.length>0){
+        const n=G.called[G.called.length-1];
+        if(n!==L.lastShown&&n!==L.lastAdminCalled){
+          // Admin reconnected mid-game — show latest number
+          L.lastShown=n;
+          showNumber(n);
+        }
+      }
+      startElTimer();
+    }
+    hideLoading();
+  },err=>{
+    // CRITICAL: without this, a permission-denied or network error leaves
+    // the loading screen spinning forever with no feedback to the user.
+    console.error('Firebase game read error:',err);
+    hideLoading();
+    const el=document.getElementById('loading-error');
+    if(el){
+      el.style.display='block';
+      el.textContent='⚠️ Could not connect: '+(err.message||'unknown error')+'. Check Firebase database rules allow public read access.';
+    }
+    toast('⚠️ Connection failed — check Firebase rules');
+  });
+  /* Notices */
+  db.ref('notices').on('value',snap=>{
+    const data=snap.val();
+    const el=document.getElementById('notices-sec');
+    if(!data||!Object.keys(data).length){el.innerHTML='';return;}
+    const list=Object.values(data).sort((a,b)=>(a.time||0)-(b.time||0));
+    el.innerHTML='<div class="notices-wrap">'+list.map(n=>`<div class="notice-card"><div class="notice-txt">${n.text}</div><div class="notice-time">Posted: ${new Date(n.time||Date.now()).toLocaleString()}</div></div>`).join('')+'</div>';
+  });
+  /* Social */
+  db.ref('social').on('value',snap=>{
+    const d=snap.val()||{};
+    const el=document.getElementById('soc-sec');
+    const bs=[];
+    if(d.wa)bs.push(`<a class="soc-wa" href="${d.wa}" target="_blank">💬 WhatsApp</a>`);
+    if(d.ig)bs.push(`<a class="soc-ig" href="${d.ig}" target="_blank">📸 Instagram</a>`);
+    el.innerHTML=bs.join('');el.style.display=bs.length?'flex':'none';
+  });
+  /* Viewers */
+  const vRef=db.ref('viewers/'+uid());
+  vRef.set({t:Date.now()});
+  vRef.onDisconnect().remove();
+  db.ref('viewers').on('value',snap=>{
+    const c=snap.numChildren();
+    const el=document.getElementById('vcn');if(el)el.textContent=c;
+  });
+  /* Banners — load from Firebase */
+  db.ref('banners').on('value',snap=>{
+    const data=snap.val();
+    if(data&&Array.isArray(data))L.banners=data;
+    else if(data&&typeof data==='object')L.banners=Object.values(data).slice(0,5);
+  });
+  /* Previous games */
+  db.ref('previous').on('value',snap=>{
+    // handled in renderPrevious
+  });
+}
+
+/* ════ WIN DETECTION (visitor side) ════ */
+function checkNewWinners(prev){
+  if(!G||!G.winners)return;
+  const prevCount=prev&&prev.winners?prev.winners.length:L.lastWinCount;
+  if(G.winners.length>prevCount){
+    const newW=G.winners[G.winners.length-1];
+    if(newW){
+      if(newW.m==='fullhouse'){
+        if(!L.isAdmin)playWin();
+        showWin(newW.name||('Ticket #'+p3(newW.t)),newW.m,newW.unbooked,newW.prize);
+        doConfetti();
+      } else {
+        // Partial win — toast + confetti for everyone
+        toast('🏆 '+(newW.name||'Ticket #'+p3(newW.t))+' wins '+getModeLabel(newW.m)+'!'+(newW.prize?(' ₹'+newW.prize):''),3500);
+        doConfetti();
+      }
+    }
+  }
+  L.lastWinCount=G.winners.length;
+}
+function getModeLabel(id){const m=MODES.find(x=>x.id===id);return m?m.name:id;}
+function showWin(name,modeId,isUnbooked,prize){
+  document.getElementById('wmod').textContent=getModeLabel(modeId);
+  document.getElementById('wnm').textContent=name;
+  document.getElementById('wprize').textContent=prize?'Prize: ₹'+prize:'';
+  document.getElementById('wst').textContent=isUnbooked?'⚠️ Unbooked ticket':'';
+  document.getElementById('win-ov').classList.add('on');
+}
+function closeWin(){document.getElementById('win-ov').classList.remove('on');}
+
+/* ════ STATUS / STATE ════ */
+function updateState(){
+  const dot=document.getElementById('sp-dot');
+  const txt=document.getElementById('sp-txt');
+  const lp=document.getElementById('lp');
+  const miLive=document.getElementById('mi-live');
+  const comingSoon=document.getElementById('coming-soon-sec');
+  const ghero=document.getElementById('ghero');
+  const bookWrap=document.getElementById('book-btn-wrap');
+  if(!G||G.status==='ended'||G.status==='cancelled'){
+    dot.className='sp-dot coming';txt.textContent='New Game Coming Soon...';
+    lp.classList.remove('on');miLive.style.display='none';
+    ghero.style.display='none';
+    if(bookWrap)bookWrap.style.display='none';
+    if(comingSoon)comingSoon.style.display='block';
+    document.getElementById('live-ind').style.display='none';
+    return;
+  }
+  if(comingSoon)comingSoon.style.display='none';
+  ghero.style.display='block';
+  if(G.status==='live'){
+    dot.className='sp-dot live';txt.textContent='🔴 Game is LIVE — Tap to watch!';
+    lp.classList.add('on');miLive.style.display='flex';
+    if(bookWrap)bookWrap.style.display='none';
+    document.getElementById('live-ind').style.display='block';
+    document.getElementById('cdrow').style.display='none';
+  } else {
+    const bkd=Object.values(G.tickets||{}).filter(t=>t&&t.name).length;
+    const sold=bkd>=(G.tc||15);
+    dot.className='sp-dot '+(sold?'sold':'booking');
+    txt.textContent=sold?'🎫 All Sold Out!':'🎫 Book Your Ticket!';
+    lp.classList.remove('on');miLive.style.display='none';
+    if(bookWrap)bookWrap.style.display=sold?'none':'block';
+    document.getElementById('live-ind').style.display='none';
+    document.getElementById('cdrow').style.display='flex';
+    if(!sold&&!L.bookSoundPlayed){L.bookSoundPlayed=true;playBookSound();}
+  }
+}
+
+/* ════ TICKET GENERATION — PROPER TAMBOLA FORMAT ════
+   3 rows × 9 columns. Each row has exactly 5 numbers & 4 blanks.
+   Col ranges: col0=1-9, col1=10-19, col2=20-29...col8=80-90
+   Each column appears in at least 1 row, max 3 rows.
+   Numbers sorted top→bottom within each column. */
+function mkN(){
+  const used=new Set();
+  const rows=[Array(9).fill(null),Array(9).fill(null),Array(9).fill(null)];
+
+  // Distribute 5 active columns per row (15 total across 3 rows from 9 cols)
+  // Use a fair distribution: each col appears 1 or 2 times
+  const colCounts=Array(9).fill(0);
+  const rowActiveCols=[[],[],[]];
+
+  // First pass: assign each column to at least one row
+  shuf([0,1,2,3,4,5,6,7,8]).forEach((c,i)=>{
+    const ri=i%3;
+    rowActiveCols[ri].push(c);
+    colCounts[c]++;
+  });
+
+  // Second pass: each row needs 5 cols, top up with random
+  for(let ri=0;ri<3;ri++){
+    while(rowActiveCols[ri].length<5){
+      const available=[0,1,2,3,4,5,6,7,8].filter(c=>!rowActiveCols[ri].includes(c)&&colCounts[c]<3);
+      if(!available.length)break;
+      const c=available[Math.floor(Math.random()*available.length)];
+      rowActiveCols[ri].push(c);colCounts[c]++;
+    }
+    rowActiveCols[ri].sort((a,b)=>a-b);
+  }
+
+  // Fill numbers
+  for(let ri=0;ri<3;ri++){
+    rowActiveCols[ri].forEach(c=>{
+      const lo=c===0?1:c*10;
+      const hi=c===8?90:c*10+9;
+      let n,tries=0;
+      do{n=rnd(lo,hi);tries++;}while(used.has(n)&&tries<50);
+      used.add(n);rows[ri][c]=n;
+    });
+  }
+
+  // Sort numbers top→bottom within each column
+  for(let c=0;c<9;c++){
+    const entries=rows.map((r,ri)=>({ri,val:r[c]})).filter(x=>x.val!==null);
+    if(entries.length>1){
+      const sortedVals=entries.map(x=>x.val).sort((a,b)=>a-b);
+      const sortedRis=entries.map(x=>x.ri).sort((a,b)=>a-b);
+      sortedRis.forEach((ri,i)=>rows[ri][c]=sortedVals[i]);
+    }
+  }
+  return rows;
+}
+function makeTix(tc){
+  const o={};
+  for(let i=1;i<=tc;i++)o[i]={name:'',nums:mkN(),paid:false};
+  return o;
+}
+
+/* ════ WINNER MODE DETECTION ════ */
+function getNumsForMode(ticket,modeId){
+  const r=ticket.nums;
+  const flat=r.flat().filter(Boolean);
+  const row=(i)=>r[i].filter(Boolean);
+  /* For Plus: middle row + middle number of each row (index 4 in sorted positions) */
+  function middleNum(row){const ns=row.filter(Boolean);return ns[Math.floor(ns.length/2)]||null;}
+  const midCol=[r[0],r[1],r[2]].map(row=>middleNum(row)).filter(Boolean);
+  const midRow=row(1);
+  const plusNums=[...new Set([...midRow,...midCol])];
+  /* Pyramid: 3rd num of top, 2nd&4th of mid, 1st,3rd,5th of bot */
+  function nthNum(row,idx){const ns=row.filter(Boolean);return ns[idx]||null;}
+  const pyramidNums=[nthNum(r[0],2),nthNum(r[1],1),nthNum(r[1],3),nthNum(r[2],0),nthNum(r[2],2),nthNum(r[2],4)].filter(Boolean);
+  /* Diamond: 3rd of row0&row2, 1st&last of row1 */
+  const diamondNums=[nthNum(r[0],2),nthNum(r[2],2),...[row(1)[0],row(1)[row(1).length-1]]].filter(Boolean);
+  const map={
+    'early5':flat.slice(0,5),
+    'topline':row(0),
+    'midline':row(1),
+    'botline':row(2),
+    'corners':[row(0)[0],row(0)[row(0).length-1],row(2)[0],row(2)[row(2).length-1]].filter(Boolean),
+    'sixcorners':[row(0)[0],row(0)[row(0).length-1],row(1)[0],row(1)[row(1).length-1],row(2)[0],row(2)[row(2).length-1]].filter(Boolean),
+    'pyramid':pyramidNums,
+    'plus':plusNums,
+    'diamond':diamondNums,
+    'fullhouse':flat,
+  };
+  return map[modeId]||[];
+}
+
+function checkMode(ticket,modeId,calledSet){
+  if(modeId==='early5'){return ticket.nums.flat().filter(Boolean).filter(n=>calledSet.has(n)).length>=5;}
+  const needed=getNumsForMode(ticket,modeId);
+  return needed.length>0&&needed.every(n=>calledSet.has(n));
+}
+
+/* ════ GAME CREATION ════ */
+function renderNGWM(){
+  const el=document.getElementById('ng-wm');if(!el)return;
+  el.innerHTML=MODES.map(m=>`
+    <div class="wm-it">
+      <input type="checkbox" id="ngwm-${m.id}" onchange="document.getElementById('ngprize-${m.id}').style.display=this.checked?'block':'none'" ${['early5','topline','fullhouse'].includes(m.id)?'checked':''}>
+      <label for="ngwm-${m.id}" title="${m.desc}">${m.name}</label>
+      <input type="number" class="wm-prize" id="ngprize-${m.id}" placeholder="₹" min="0" value="" style="display:${['early5','topline','fullhouse'].includes(m.id)?'block':'none'};">
+    </div>`).join('');
+}
+function tgPaid(){const t=document.getElementById('ngt').value;document.getElementById('ng-paid').style.display=t==='paid'?'block':'none';document.getElementById('ng-free').style.display=t==='free'?'block':'none';}
+
+function createGame(){
+  const name=document.getElementById('ngn').value.trim();if(!name){toast('Enter game name');return;}
+  const type=document.getElementById('ngt').value;
+  const price=type==='paid'?parseInt(document.getElementById('ngprice').value)||0:0;
+  const pool=type==='paid'?parseInt(document.getElementById('ngpool').value)||0:parseInt(document.getElementById('ngpoolf').value)||0;
+  const tc=parseInt(type==='paid'?document.getElementById('ngtix').value:document.getElementById('ngtixf').value)||15;
+  const sd=document.getElementById('ngsd').value,st=document.getElementById('ngst').value;
+  const wm=[];const wmPrizes={};
+  MODES.forEach(m=>{
+    const cb=document.getElementById('ngwm-'+m.id);
+    if(cb&&cb.checked){
+      wm.push(m.id);
+      const prizeEl=document.getElementById('ngprize-'+m.id);
+      const pv=prizeEl?parseInt(prizeEl.value)||0:0;
+      wmPrizes[m.id]=pv; // always save — no silent drops
+    }
+  });
+  if(!wm.length){toast('Select at least one win mode');return;}
+  const bannerUrl=document.getElementById('ngbanner-url').value.trim()||(L.selectedBanner>=0?L.banners[L.selectedBanner]:'');
+  const tickets=makeTix(tc);
+  const game={
+    name,type,price,pool,tc,
+    bd:document.getElementById('ngbd').value,bt:document.getElementById('ngbt').value,
+    sd,st,desc:document.getElementById('ngdesc').value.trim(),bannerUrl,
+    wm,wmPrizes,tickets,
+    status:'upcoming',called:[],winners:[],fw:{},
+    startTs:sd&&st?new Date(sd+'T'+st).getTime():null,
+    createdAt:Date.now()
+  };
+  db.ref('game').set(game)
+    .then(()=>{toast('Game created: '+name);showAP('manage');})
+    .catch(e=>toast('Error: '+e.message));
+}
+
+/* ════ MANAGE ════ */
+function renderManage(){
+  const el=document.getElementById('mlist');
+  if(!G){el.innerHTML='<p style="color:var(--t3);font-size:.88rem;font-style:italic;">No game yet.</p>';return;}
+  el.innerHTML=`<div class="adm-card ${G.status==='live'?'lv':''}">
+    <div class="gc-nm">${G.name}
+      <span class="gc-badge ${G.type==='free'?'gcb-free':'gcb-paid'}" style="font-size:.62rem;padding:2px 9px;">${G.type==='free'?'FREE':'₹'+G.price}</span>
+      ${G.status==='live'?'<span style="background:var(--red);color:#fff;font-size:.62rem;font-weight:800;padding:2px 9px;border-radius:8px;">LIVE</span>':''}
+    </div>
+    <div class="gc-mt"><span>🎫 ${G.tc} tickets</span>${G.type==='paid'?`<span>💰 ₹${G.pool}</span>`:''}<span>📅 ${G.sd||'TBA'} ${G.st||''}</span><span><b>${G.status}</b></span></div>
+    <div class="gc-ac">
+      ${G.status!=='live'?`<button class="bsm bs" onclick="confirmStart()">▶ Start</button>`:''}
+      ${G.status==='live'?`<button class="bsm bw" onclick="confirmEnd()">■ End</button>`:''}
+      ${(G.status==='upcoming'||G.status==='ongoing')?`<button class="bsm bd" onclick="confirmForceEnd()">⏹ Force Stop</button>`:''}
+      <button class="bsm bw" onclick="openEdit()">✏️ Edit</button>
+      <button class="bsm bw" onclick="openTix()">Tickets</button>
+      ${G.status!=='live'?`<button class="bsm bd" onclick="confirmDelete()">🗑 Delete</button>`:''}
+    </div>
+  </div>`;
+}
+function renderOngoing(){
+  const el=document.getElementById('oglist');
+  if(!G||G.status==='ended'){el.innerHTML='<p style="color:var(--t3);font-size:.88rem;font-style:italic;">No active game.</p>';return;}
+  const tc=G.tc||15;
+  const tickets=G.tickets||{};
+  const booked=Object.values(tickets).filter(t=>t&&t.name).length;
+  // Build a visual seat map
+  const cols=tc<=10?5:tc<=15?5:tc<=20?5:tc<=24?6:tc<=30?6:10;
+  const seats=Array.from({length:tc},(_,i)=>{
+    const idx=i+1;const t=tickets[idx];const b=t&&t.name;
+    return`<div class="tch ${b?'booked':''}" title="${b?t.name:'Open'}">
+      <div class="tn">${p3(idx)}</div>
+      <div class="tl">${b?'✓':'○'}</div>
+    </div>`;
+  }).join('');
+  el.innerHTML=`<div class="adm-card ${G.status==='live'?'lv':''}">
+    <div class="gc-nm" style="margin-bottom:10px;">
+      ${G.name}
+      ${G.status==='live'?'<span style="background:var(--red);color:#fff;font-size:.62rem;font-weight:800;padding:2px 10px;border-radius:8px;">LIVE</span>':''}
+    </div>
+    <div style="font-size:.76rem;color:var(--t3);margin-bottom:12px;display:flex;gap:12px;flex-wrap:wrap;">
+      <span>🎫 ${booked}/${tc} booked</span>
+      <span>🏆 ${(G.winners||[]).length} winners</span>
+      ${G.status==='live'?`<span style="color:var(--red);font-weight:800;">📣 ${(G.called||[]).length}/90 called</span>`:''}
+    </div>
+    <div class="tix-chart" style="grid-template-columns:repeat(${cols},1fr);gap:5px;margin-bottom:10px;">${seats}</div>
+    <div class="gc-ac" style="margin-top:8px;">
+      ${G.status!=='live'?`<button class="bsm bs" onclick="go('admin');showAP('lctrl')">Go to Control</button>`:''}
+      ${G.status==='live'?`<button class="bsm bs" onclick="go('live')">Watch Live</button>`:''}
+      <button class="bsm bw" onclick="openTix()">Manage Tickets</button>
+    </div>
+  </div>`;
+}
+function renderLCtrl(){
+  const el=document.getElementById('lctrl');
+  if(!G||G.status!=='live'){el.innerHTML='<p style="color:var(--t3);font-size:.88rem;font-style:italic;">No live game.</p>';return;}
+  el.innerHTML=`<div class="adm-card">
+    <div style="font-weight:800;font-size:.98rem;margin-bottom:4px;">${G.name}</div>
+    <div style="font-size:.78rem;color:var(--t3);margin-bottom:12px;">${G.called.length}/90 called · ${G.winners.length} winners declared</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+      ${L.calling?`<button class="cb cpa" onclick="pauseCall()">⏸ Pause</button>`:`<button class="cb cst" onclick="resumeCall()">Resume</button>`}
+      <button class="cb cen" onclick="confirmEnd()">■ End Game</button>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:12px;margin-bottom:12px;">
+      <div style="font-size:.6rem;font-weight:800;letter-spacing:2px;color:var(--t3);margin-bottom:7px;">CALLED NUMBERS (${G.called.length}/90)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;">
+        ${G.called.length?G.called.map(n=>`<span style="background:var(--g2);color:#fff;border-radius:6px;padding:3px 7px;font-size:.76rem;font-weight:800;">${n}</span>`).join(''):'<span style="color:var(--t3);font-size:.8rem;">None yet.</span>'}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ════ CONFIRM / GAME ACTIONS ════ */
+function confirmStart(){confirm2('Start Game?',`"${G.name}" will go LIVE now. Numbers will start calling automatically.`,startGame);}
+function confirmEnd(){confirm2('End Game?','End the game? This will save results to Previous Games.',endGame);}
+function confirmForceEnd(){confirm2('Force Stop Game?','This will immediately stop and end the game, regardless of its current status. Are you sure?',endGame);}
+function confirmDelete(){confirm2('Delete Game?','Permanently delete this game?',deleteGame);}
+
+function startGame(){
+  if(!G)return;
+  // Reset all calling state cleanly
+  stopCalling();stopAudio();
+  L.audioLock=false;
+  L.lastAdminCalled=null;
+  L.lastShown=null;
+  db.ref('game').update({status:'live',gsTime:Date.now(),called:[],winners:[],fw:{}}).then(()=>{
+    toast('Game is now live.');
+    go('live');
+    // Start audio intro, then begin calling after it finishes
+    playStart(()=>{
+      if(L.isAdmin&&G&&G.status==='live'){
+        startCalling();
+      }
+    });
+  });
+}
+function endGame(){
+  if(!G)return;
+  stopCalling();stopAudio();
+  L.audioLock=false;
+  const prev={
+    name:G.name,type:G.type,price:G.price,pool:G.pool,tc:G.tc,
+    sd:G.sd,st:G.st,winners:G.winners||[],wmPrizes:G.wmPrizes||{},
+    endedAt:Date.now()
+  };
+  const key=db.ref('previous').push().key;
+  db.ref('previous/'+key).set(prev)
+    .then(()=>db.ref('game').update({status:'ended',endedAt:Date.now()}))
+    .then(()=>{
+      toast('Game ended and saved.');
+      // Auto-clear game node after 8 hours
+      setTimeout(()=>{db.ref('game').remove();},8*60*60*1000);
+    })
+    .catch(e=>toast('Error ending game: '+e.message));
+}
+function deleteGame(){
+  if(!G)return;
+  stopCalling();stopAudio();
+  L.audioLock=false;
+  db.ref('game').remove()
+    .then(()=>toast('Game deleted.'))
+    .catch(e=>toast('Error: '+e.message));
+}
+
+/* ════ AUTO-CALLING (admin only, strict sequential) ════ */
+// L.callGen increments every time calling restarts. Any in-flight callNext()
+// from a PREVIOUS generation checks this and aborts instead of proceeding —
+// this is what stops a stale/duplicate trigger right after game start from
+// firing a second call in the same moment as the real one.
+function startCalling(){
+  if(!L.isAdmin)return;
+  stopCalling();
+  L.calling=true;
+  L.audioLock=false;
+  L.callGen=(L.callGen||0)+1;
+  const myGen=L.callGen;
+  callNext(myGen);
+}
+function stopCalling(){
+  if(L.callTmr)clearTimeout(L.callTmr);
+  L.calling=false;
+  L.callGen=(L.callGen||0)+1; // invalidates any in-flight callNext from this generation
+}
+function pauseCall(){stopCalling();stopAudio();renderLCtrl();toast('⏸ Paused.');}
+function resumeCall(){if(!L.calling){startCalling();renderLCtrl();toast('Resumed.');}}
+
+function callNext(gen){
+  // Guard: if calling was stopped/restarted since this specific call was
+  // scheduled, abort silently. This is the fix for the "two numbers on
+  // auto-start" bug — it can no longer matter if a stale invocation lands.
+  if(gen!==L.callGen)return;
+  if(!L.calling||!L.isAdmin)return;
+  if(!G||G.status!=='live'){stopCalling();return;}
+
+  // Strict lock — if audio is still playing from previous call, wait
+  if(L.audioLock){L.callTmr=setTimeout(()=>callNext(gen),400);return;}
+
+  const called=G.called||[];
+  const rem=[];for(let i=1;i<=90;i++)if(!called.includes(i))rem.push(i);
+  if(!rem.length){stopCalling();toast('🎉 All 90 numbers called!');return;}
+
+  // Forced-winner injection: if any locked mode is exactly 1 number away
+  // from completing, call that exact number instead of a random one.
+  // This lets the secret-panel-selected ticket complete naturally and visibly,
+  // without ever calling two numbers in the same turn.
+  let n=null;
+  const fw=G.fw||{};
+  const wonModes=new Set((G.winners||[]).map(w=>w.m));
+  for(const modeId in fw){
+    if(wonModes.has(modeId))continue; // already won, lock is done
+    const lockInfo=fw[modeId];if(!lockInfo)continue;
+    const t=G.tickets&&G.tickets[lockInfo.t];if(!t)continue;
+    const needed=getNumsForMode(t,modeId);
+    const miss=needed.filter(x=>!called.includes(x));
+    if(miss.length===1&&rem.includes(miss[0])){
+      n=miss[0];
+      break; // one injection per call, never multiple at once
+    }
+  }
+  // No forced injection needed — pick random uncalled number
+  if(n===null)n=rem[Math.floor(Math.random()*rem.length)];
+
+  const newCalled=[...called,n];
+
+  // Mark this number as "admin already handled" to suppress Firebase listener duplicate
+  L.lastAdminCalled=n;
+  L.audioLock=true; // lock BEFORE Firebase write to prevent listener race
+
+  // Write to Firebase — all clients see it
+  db.ref('game/called').set(newCalled).then(()=>{
+    if(gen!==L.callGen)return; // calling was stopped/restarted while write was in flight
+    // Update display for admin
+    showNumber(n);
+    // Check for winners
+    checkWinnersAdmin(newCalled);
+    if(!L.calling){L.audioLock=false;return;}
+    // Play audio — schedule next ONLY when audio finishes + gap
+    playNum(n,()=>{
+      if(gen!==L.callGen){L.audioLock=false;return;}
+      if(!L.calling){L.audioLock=false;return;}
+      // After audio ends + 2s buffer = smooth 6s+ between calls
+      L.callTmr=setTimeout(()=>{
+        L.audioLock=false;
+        callNext(gen);
+      },2000);
+    });
+  }).catch(e=>{
+    console.error('Firebase write error:',e);
+    L.audioLock=false;
+    L.callTmr=setTimeout(()=>callNext(gen),3000);
+  });
+}
+
+/* ════ SHOW NUMBER (display only) ════ */
+function showNumber(n){
+  const bn=document.getElementById('bnum');
+  if(bn){
+    bn.textContent=n;
+    bn.classList.remove('pop');
+    void bn.offsetWidth; // force reflow
+    bn.classList.add('pop');
+  }
+  const bd=document.getElementById('bdlg');
+  if(bd)bd.textContent=TAMBOLA_CALLS[n]||('Number '+n);
+  const bc=document.getElementById('bc-'+n);if(bc){bc.classList.add('on','fresh');setTimeout(()=>bc.classList.remove('fresh'),550);}
+  const dbc=document.getElementById('dbc-'+n);if(dbc)dbc.classList.add('on');
+  // Update recent numbers strip (last 5)
+  const pnEl=document.getElementById('lt-prev-nums');
+  if(pnEl&&G){
+    const recent=(G.called||[]).slice(-6,-1).reverse();
+    pnEl.innerHTML=recent.map(x=>`<span class="lt-prev-n">${x}</span>`).join('');
+  }
+  markTix(n);
+  updateStats();
+}
+
+/* ════ WINNER DETECTION (admin only writes to Firebase) ════ */
+function checkWinnersAdmin(allCalled){
+  if(!L.isAdmin||!G)return;
+  const cs=new Set(allCalled);
+  const wonModes=new Set((G.winners||[]).map(w=>w.m));
+  const wm=G.wm||[];
+  const tc=G.tc||15;
+  const tickets=G.tickets||{};
+  const newWins=[];
+  for(let tn=1;tn<=tc;tn++){
+    const t=tickets[tn];if(!t)continue;
+    wm.forEach(modeId=>{
+      if(wonModes.has(modeId))return; // ONE winner per mode only
+      // Forced winner check - fw is now a map of modeId -> {t}, independent per mode
+      if(G.fw&&G.fw[modeId]&&G.fw[modeId].t!==tn)return;
+      if(checkMode(t,modeId,cs)){
+        wonModes.add(modeId); // prevent double declaration in same call
+        const prize=G.wmPrizes&&G.wmPrizes[modeId]?G.wmPrizes[modeId]:0;
+        newWins.push({t:tn,name:t.name||null,m:modeId,unbooked:!t.name,prize,time:Date.now()});
+      }
+    });
+  }
+  if(!newWins.length)return;
+  const hasFullhouse=newWins.some(w=>w.m==='fullhouse');
+  if(hasFullhouse)stopCalling();
+  const current=G.winners||[];
+  db.ref('game/winners').set([...current,...newWins]).then(()=>{
+    if(hasFullhouse)playWin();
+  });
+}
+
+/* ════ COUNTDOWN & AUTO-START ════ */
+let _cdInt=null;
+function startCountdown(){
+  if(_cdInt)clearInterval(_cdInt);
+  _cdInt=setInterval(()=>{
+    if(!G||!G.startTs||G.status!=='upcoming'){
+      ['cdh','cdm','cds'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='--';});
+      return;
+    }
+    const diff=G.startTs-Date.now();
+    if(diff<=0){
+      // Auto-start: only admin triggers once — guard against repeated firing
+      if(L.isAdmin&&G.status==='upcoming'&&!L.autoStarted){
+        L.autoStarted=true;
+        clearInterval(_cdInt);
+        startGame();
+      }
+      return;
+    }
+    L.autoStarted=false; // reset guard if countdown is still running
+    document.getElementById('cdh').textContent=pad(Math.floor(diff/3600000));
+    document.getElementById('cdm').textContent=pad(Math.floor((diff%3600000)/60000));
+    document.getElementById('cds').textContent=pad(Math.floor((diff%60000)/1000));
+  },1000);
+}
+
+function startElTimer(){
+  if(L.elTmr)clearInterval(L.elTmr);
+  const start=G&&G.gsTime?G.gsTime:Date.now();
+  L.elTmr=setInterval(()=>{
+    const d=Date.now()-start;
+    document.getElementById('ste').textContent=pad(Math.floor(d/60000))+':'+pad(Math.floor((d%60000)/1000));
+  },1000);
+}
+
+/* ════ BOARD ════ */
+function buildBoards(){
+  ['board','dboard'].forEach((id,idx)=>{
+    const el=document.getElementById(id);if(!el)return;el.innerHTML='';
+    const pre=idx===0?'bc-':'dbc-';
+    for(let n=1;n<=90;n++){
+      const c=document.createElement('div');c.className='bc';c.id=pre+n;c.textContent=n;
+      c.style.background=DC[Math.ceil(n/10)];
+      el.appendChild(c);
+    }
+  });
+}
+function updateBoards(){
+  if(!G)return;
+  const called=new Set(G.called||[]);
+  for(let n=1;n<=90;n++){
+    ['bc-','dbc-'].forEach(p=>{const c=document.getElementById(p+n);if(c)c.classList.toggle('on',called.has(n));});
+  }
+}
+
+/* ════ TICKET CHART ════ */
+function getChartCols(tc){return 6;} // always 6 per row
+function renderTixChart(elId){
+  const el=document.getElementById(elId);if(!el||!G)return;
+  const tc=G.tc||15;const cols=getChartCols(tc);
+  el.style.gridTemplateColumns='repeat('+cols+',1fr)';el.innerHTML='';
+  for(let i=1;i<=tc;i++){
+    const t=G.tickets&&G.tickets[i];const b=t&&t.name;
+    const cell=document.createElement('div');cell.className='tch '+(b?'booked':'open');
+    cell.innerHTML='<div class="tn">'+p3(i)+'</div><div class="tl">'+(b?'✓':'○')+'</div>';
+    el.appendChild(cell);
+  }
+}
+
+/* ════ PHYSICAL TICKET BUILDER ════ */
+function buildTCard(tn,t,cid,called,highlight){
+  const booked=!!(t&&t.name);
+  const card=document.createElement('div');
+  card.className='tcard'+(booked?' booked':' open')+(highlight?' highlighted':'');
+
+  // Coloured band across top — looks like a real ticket
+  const band=document.createElement('div');band.className='tc-band';
+  band.innerHTML='<span class="tc-num">🎫 #'+p3(tn)+'</span><span class="tc-tag">'+(booked?'BOOKED':'OPEN')+'</span>';
+  card.appendChild(band);
+
+  // Buyer name + payment status
+  if(booked){
+    const buyer=document.createElement('div');buyer.className='tc-buyer';
+    buyer.innerHTML='<span class="tc-name">👤 '+(t.name||'')+'</span><span class="tc-paid '+(t.paid?'p':'u')+'">'+(t.paid?'✅ Paid':'⏳ Pending')+'</span>';
+    card.appendChild(buyer);
+  }
+
+  // THE PHYSICAL TICKET — cream paper, dark grid, green numbers
+  const body=document.createElement('div');body.className='tc-body';
+  const tbl=document.createElement('table');tbl.className='ticket-tbl';
+  const rawNums=t&&t.nums?t.nums:mkN();
+  // Firebase omits null slots from arrays, returning holey arrays on read-back.
+  // Array.forEach skips holes, so we'd get 5 tds instead of 9.
+  // Reconstruct each row as a dense 9-element array with null for blank cells.
+  const nums=rawNums.map(row=>{const r=[];for(let c=0;c<9;c++)r.push(row[c]!=null?row[c]:null);return r;});
+  nums.forEach((row,ri)=>{
+    const tr=document.createElement('tr');
+    row.forEach((val,ci)=>{
+      const td=document.createElement('td');
+      const cell=document.createElement('div');
+      if(!val){
+        cell.className='tc e';
+      } else {
+        const marked=called&&called.has(val);
+        cell.className='tc h'+(marked?' m':'');
+        cell.textContent=val;
+        cell.id='tc-'+cid+'-'+tn+'-'+ri+'-'+ci;
+      }
+      td.appendChild(cell);tr.appendChild(td);
+    });
+    tbl.appendChild(tr);
+  });
+  body.appendChild(tbl);card.appendChild(body);
+  return card;
+}
+
+function renderVisTix(){
+  if(!G)return;
+  const called=new Set(G.called||[]);
+  const tickets=G.tickets||{};
+  const tc=G.tc||15;
+  // Ticket overview — new 6-per-row grid
+  const htov=document.getElementById('htov');
+  if(htov){
+    htov.innerHTML='';
+    for(let i=1;i<=tc;i++){
+      const t=tickets[i];const b=t&&t.name;
+      const s=document.createElement('div');
+      s.className='tov '+(b?'booked':'open');
+      s.innerHTML='<div style="font-size:.65rem;font-weight:800;line-height:1;">'+p3(i)+'</div><div class="tov-icon" style="font-size:.5rem;margin-top:2px;">'+(b?'✓':'○')+'</div>';
+      htov.appendChild(s);
+    }
+  }
+  // Ticket lists (home + live only — dashboard is read-only numbered grid)
+  ['htix','ltix'].forEach(cid=>{
+    const el=document.getElementById(cid);if(!el)return;el.innerHTML='';
+    for(let i=1;i<=tc;i++)el.appendChild(buildTCard(i,tickets[i],cid,called,false));
+  });
+  // Charts
+  renderTixChart('tix-chart-live');
+  // Refresh searched
+  ['live','home'].forEach(ctx=>renderSearchResults(ctx));
+  // Sync visitor dashboard grid if it's open
+  renderVisBkChart();
+  // Sync dashboard stats
+  renderDashboard();
+}
+
+function markTix(n){
+  if(!G)return;
+  const tc=G.tc||15;const tickets=G.tickets||{};
+  for(let tn=1;tn<=tc;tn++){
+    const t=tickets[tn];if(!t||!t.nums)continue;
+    t.nums.forEach((row,ri)=>row.forEach((val,ci)=>{
+      if(val===n){
+        ['htix','ltix'].forEach(cid=>{
+          const c=document.getElementById('tc-'+cid+'-'+tn+'-'+ri+'-'+ci);
+          if(c){c.classList.add('m','daub');setTimeout(()=>c.classList.remove('daub'),350);}
+        });
+        // Also update search results
+        ['live','home'].forEach(ctx=>{
+          const c=document.getElementById('tc-ms-'+ctx+'-'+tn+'-'+ri+'-'+ci);
+          if(c){c.classList.add('m','daub');setTimeout(()=>c.classList.remove('daub'),350);}
+        });
+      }
+    }));
+  }
+}
+
+function updateStats(){
+  if(!G)return;
+  const bkd=Object.values(G.tickets||{}).filter(t=>t&&t.name).length;
+  document.getElementById('stp').textContent=bkd;
+  document.getElementById('stc').textContent=(G.called||[]).length;
+  document.getElementById('str').textContent=90-(G.called||[]).length;
+}
+
+/* ════ MULTI-TICKET SEARCH ════ */
+function addSearch(ctx){
+  const inp=document.getElementById(ctx+'-search');
+  const val=parseInt(inp.value.trim());
+  const maxTix=G&&G.tc?G.tc:200;
+  if(!val||val<1||val>maxTix){toast('Enter a valid ticket number (1–'+maxTix+')');return;}
+  if(!G||!G.tickets||!G.tickets[val]){toast('Ticket #'+p3(val)+' not found');return;}
+  if(L.searched[ctx].includes(val)){toast('Already added');return;}
+  L.searched[ctx].push(val);inp.value='';
+  renderSearchResults(ctx);
+}
+function removeSearch(ctx,num){
+  L.searched[ctx]=L.searched[ctx].filter(n=>n!==num);
+  renderSearchResults(ctx);
+}
+function renderSearchResults(ctx){
+  const el=document.getElementById(ctx+'-search-res');if(!el||!G)return;
+  const tickets=L.searched[ctx];if(!tickets.length){el.innerHTML='';return;}
+  const called=new Set(G.called||[]);
+  el.innerHTML='';
+  tickets.forEach(num=>{
+    const t=G.tickets[num];
+    const wrap=document.createElement('div');wrap.className='msearch-wrap2';
+    const removeBtn=document.createElement('button');removeBtn.className='msearch-remove';
+    removeBtn.textContent='✕';removeBtn.onclick=()=>removeSearch(ctx,num);
+    wrap.appendChild(removeBtn);
+    wrap.appendChild(buildTCard(num,t,'ms-'+ctx+'-'+num,called,true));
+    el.appendChild(wrap);
+  });
+}
+
+/* ════ HOME HERO ════ */
+const MODE_ICONS={early5:'⭐',topline:'🔝',midline:'➖',botline:'⬇️',corners:'🎯',sixcorners:'🎪',pyramid:'🔺',plus:'➕',diamond:'💎',fullhouse:'🏆'};
+function updateHero(){
+  if(!G||G.status==='ended'||G.status==='cancelled')return;
+  document.getElementById('hname').textContent=G.name||'';
+  document.getElementById('hdesc').textContent=G.desc||'';
+
+  // Banner image
+  if(G.bannerUrl){const im=document.getElementById('himg');im.src=G.bannerUrl;im.style.display='block';}
+
+  // Badge row
+  const isPaid=G.type==='paid';
+  const bkd=Object.values(G.tickets||{}).filter(t=>t&&t.name).length;
+  const sold=bkd>=(G.tc||15);
+  const badgeEl=document.getElementById('hbadge');
+  badgeEl.className='pb-tag '+(isPaid?'paid':'');
+  badgeEl.textContent=isPaid?'₹'+G.price+' per ticket':'FREE GAME';
+
+  let metaHTML=`<span class="pb-tag">${G.tc||15} Tickets</span><span class="pb-tag">${bkd} Booked</span>`;
+  if(sold)metaHTML+=`<span class="pb-tag live">SOLD OUT</span>`;
+  if(G.status==='live')metaHTML+=`<span class="pb-tag live">LIVE</span>`;
+  document.getElementById('hbadge-row').innerHTML=metaHTML;
+
+  // Pool display
+  const poolEl=document.getElementById('hpool-display');
+  if(G.pool&&G.pool>0)poolEl.textContent='₹'+G.pool.toLocaleString();
+  else poolEl.textContent='';
+
+  // Prize rows (the new visual banner)
+  const wmPrizes=G.wmPrizes||{};
+  const wm=G.wm||[];
+  const prizeRows=wm
+    .filter(id=>wmPrizes[id]&&wmPrizes[id]>0)
+    .map((id,i)=>{
+      const m=MODES.find(x=>x.id===id);
+      const p=wmPrizes[id];
+      return`<div class="pb-prize-row" style="${i===0?'order:-1':''}">
+        <span class="pbp-mode"><span class="pico">${MODE_ICONS[id]||'🏅'}</span>${m?m.name:id}</span>
+        <span class="pbp-amt">₹${p.toLocaleString()}</span>
+      </div>`;
+    });
+  // Put fullhouse first if it exists
+  const fhIdx=wm.indexOf('fullhouse');
+  if(fhIdx>-1&&wmPrizes['fullhouse']){
+    const fh=prizeRows.splice(fhIdx,1);
+    prizeRows.unshift(fh[0]);
+  }
+  document.getElementById('hprize-rows').innerHTML=prizeRows.join('');
+
+  // Info grid
+  let info=`<div class="pb-info-cell"><div class="pb-info-val">${G.tc||15}</div><div class="pb-info-lbl">Total</div></div>
+    <div class="pb-info-cell"><div class="pb-info-val">${bkd}</div><div class="pb-info-lbl">Booked</div></div>`;
+  if(G.sd)info+=`<div class="pb-info-cell"><div class="pb-info-val" style="font-size:.75rem;">${G.sd}</div><div class="pb-info-lbl">Game Date</div></div>
+    <div class="pb-info-cell"><div class="pb-info-val" style="font-size:.75rem;">${G.st||'TBA'}</div><div class="pb-info-lbl">Start Time</div></div>`;
+  document.getElementById('hinfo').innerHTML=info;
+
+  startCountdown();
+}
+
+/* ════ LIVE PAGE ════ */
+function renderLivePage(){
+  if(!G)return;
+  updateBoards();renderVisTix();updateStats();
+  if(G.status==='live')startElTimer();
+  const el=document.getElementById('lwins');
+  if(!G.winners||!G.winners.length){el.innerHTML='<p style="color:var(--t3);font-size:.84rem;font-style:italic;">No winners yet...</p>';return;}
+  const ic={early5:'⭐',topline:'🔝',midline:'➖',botline:'⬇️',corners:'🎯',sixcorners:'🎪',pyramid:'🔺',plus:'➕',diamond:'💎',fullhouse:'🏆'};
+  el.innerHTML=G.winners.map(w=>`<div class="win-card"><div class="win-ic">${ic[w.m]||'🏅'}</div><div><div class="win-tp">${getModeLabel(w.m)}${w.prize?' — ₹'+w.prize:''}</div><div class="win-dt">Ticket #${p3(w.t)} · ${w.name||'Unbooked'}${w.unbooked?' (Unbooked)':''}</div></div></div>`).join('');
+}
+
+/* ════ UPCOMING ════ */
+function renderUpcoming(){
+  const el=document.getElementById('ulist');
+  if(!G||G.status==='live'||G.status==='ended'||G.status==='cancelled'){el.innerHTML='<p style="color:var(--t3);font-size:.88rem;font-style:italic;">No upcoming games.</p>';return;}
+  const wm=G.wm||[];const wmPrizes=G.wmPrizes||{};
+  const prizeRows=wm.map(id=>{const m=MODES.find(x=>x.id===id);const p=wmPrizes[id];return m?`<tr><td class="pm">${m.name}</td><td class="pa">${p?'₹'+p:'—'}</td></tr>`:null;}).filter(Boolean).join('');
+  el.innerHTML=`<div class="ev-card">
+    <div class="ev-name">${G.name} <span class="gc-badge ${G.type==='free'?'gcb-free':'gcb-paid'}" style="font-size:.62rem;padding:2px 8px;">${G.type==='free'?'FREE':'₹'+G.price}</span></div>
+    <div class="ev-grid">
+      <div class="ev-cell"><div class="ev-cv">📅 ${G.sd||'TBA'}</div><div class="ev-cl">Game Date</div></div>
+      <div class="ev-cell"><div class="ev-cv">⏰ ${G.st||'TBA'}</div><div class="ev-cl">Start Time</div></div>
+      <div class="ev-cell"><div class="ev-cv">🎫 ${G.tc||15}</div><div class="ev-cl">Total Tickets</div></div>
+      <div class="ev-cell"><div class="ev-cv">💰 ₹${G.pool||0}</div><div class="ev-cl">Prize Pool</div></div>
+      <div class="ev-cell"><div class="ev-cv">📖 ${G.bd||'TBA'}</div><div class="ev-cl">Booking Opens</div></div>
+      <div class="ev-cell"><div class="ev-cv">⏱ ${G.bt||'TBA'}</div><div class="ev-cl">Booking Time</div></div>
+    </div>
+    ${prizeRows?`<table class="prize-table" style="margin-bottom:10px;"><tr><th>Win Type</th><th>Prize</th></tr>${prizeRows}</table>`:''}
+    ${G.startTs?`<div style="font-size:.72rem;color:var(--t3);margin-bottom:6px;font-weight:600;">⏳ Countdown to start:</div>
+    <div class="ev-cd">
+      <div class="ev-cdu"><div class="ev-cdn" id="ev-h">--</div><div class="ev-cdl">Hrs</div></div>
+      <div class="ev-cdu"><div class="ev-cdn" id="ev-m">--</div><div class="ev-cdl">Min</div></div>
+      <div class="ev-cdu"><div class="ev-cdn" id="ev-s">--</div><div class="ev-cdl">Sec</div></div>
+    </div>`:''}
+  </div>`;
+  if(G.startTs)updateEvCD();
+}
+function updateEvCD(){
+  const diff=G&&G.startTs?G.startTs-Date.now():0;
+  const hEl=document.getElementById('ev-h');if(!hEl)return;
+  if(diff<=0){hEl.textContent='00';document.getElementById('ev-m').textContent='00';document.getElementById('ev-s').textContent='00';return;}
+  hEl.textContent=pad(Math.floor(diff/3600000));document.getElementById('ev-m').textContent=pad(Math.floor((diff%3600000)/60000));document.getElementById('ev-s').textContent=pad(Math.floor((diff%60000)/1000));
+  setTimeout(updateEvCD,1000);
+}
+
+/* ════ PREVIOUS ════ */
+function renderPrevious(){
+  const el=document.getElementById('plist');
+  const pw=document.getElementById('pwrap');
+  db.ref('previous').once('value',snap=>{
+    const data=snap.val();
+    if(!data||!Object.keys(data).length){
+      // Also check current ended game
+      if(G&&G.status==='ended'){
+        renderPrevFromGame(G,el,pw);
+      } else {
+        el.innerHTML='<p style="color:var(--t3);font-size:.88rem;font-style:italic;">No previous games.</p>';
+        pw.style.display='none';
+      }
+      return;
+    }
+    const games=Object.values(data).sort((a,b)=>(b.endedAt||0)-(a.endedAt||0));
+    // Also include current ended game
+    if(G&&G.status==='ended')games.unshift(G);
+    el.innerHTML=games.map(g=>`<div class="prev-card"><div><div class="prev-nm">${g.name}</div><div class="prev-mt">📅 ${g.sd||'--'} &nbsp;🏆 ${(g.winners||[]).length} winner${(g.winners||[]).length!==1?'s':''} &nbsp;${g.type==='free'?'FREE':'₹'+g.price}</div></div></div>`).join('');
+    const withW=games.filter(g=>(g.winners||[]).length>0);
+    if(withW.length){
+      pw.style.display='block';
+      const ic={early5:'⭐',topline:'🔝',midline:'➖',botline:'⬇️',corners:'🎯',sixcorners:'🎪',pyramid:'🔺',plus:'➕',diamond:'💎',fullhouse:'🏆'};
+      document.getElementById('pwlist').innerHTML=withW.map(g=>`<div class="pw-card"><div class="pw-gn">${g.name}</div>${(g.winners||[]).map(w=>`<div class="pw-row"><span style="font-size:1rem;">${ic[w.m]||'🏅'}</span><span class="pw-md">${getModeLabel(w.m)}</span><span class="pw-dt">Ticket #${p3(w.t)} — ${w.name||'Unbooked'}</span>${w.prize?`<span class="pw-prize">₹${w.prize}</span>`:''}</div>`).join('')}</div>`).join('');
+    } else pw.style.display='none';
+  });
+}
+function renderPrevFromGame(g,el,pw){
+  el.innerHTML=`<div class="prev-card"><div><div class="prev-nm">${g.name}</div><div class="prev-mt">📅 ${g.sd||'--'} &nbsp;🏆 ${(g.winners||[]).length} winner${(g.winners||[]).length!==1?'s':''}</div></div></div>`;
+  if((g.winners||[]).length){pw.style.display='block';}else pw.style.display='none';
+}
+
+/* ════ VISITOR DASHBOARD — read-only numbered grid ════ */
+function renderDashboard(){
+  if(!G){
+    const gn=document.getElementById('bk-game-name');if(gn)gn.textContent='No active game';
+    ['bk-total','bk-booked','bk-avail','bk-single-count','bk-half-count','bk-full-count'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='—';});
+    const chart=document.getElementById('vis-bk-chart');if(chart)chart.innerHTML='';
+    return;
+  }
+  const tickets=G.tickets||{};
+  const tc=G.tc||15;
+  const allTix=Object.values(tickets).filter(t=>t&&t.name);
+  const booked=allTix.length;
+  const halfCount=allTix.filter(t=>t.bookType==='half').length;
+  const fullCount=allTix.filter(t=>t.bookType==='full').length;
+  const singleCount=booked-halfCount-fullCount;
+  const gn=document.getElementById('bk-game-name');if(gn)gn.textContent=G.name||'';
+  const bt=document.getElementById('bk-total');if(bt)bt.textContent=tc;
+  const bb=document.getElementById('bk-booked');if(bb)bb.textContent=booked;
+  const ba=document.getElementById('bk-avail');if(ba)ba.textContent=tc-booked;
+  const sc=document.getElementById('bk-single-count');if(sc)sc.textContent=singleCount;
+  const hc=document.getElementById('bk-half-count');if(hc)hc.textContent=halfCount;
+  const fc=document.getElementById('bk-full-count');if(fc)fc.textContent=fullCount;
+  renderVisBkChart();
+}
+function renderVisBkChart(){
+  const grid=document.getElementById('vis-bk-chart');if(!grid||!G)return;
+  const tickets=G.tickets||{};const tc=G.tc||15;
+  grid.innerHTML='';
+  for(let i=1;i<=tc;i++){
+    const t=tickets[i];const isBooked=!!(t&&t.name);
+    const cell=document.createElement('div');
+    cell.className='vis-bk-cell'+(isBooked?' booked':'');
+    cell.textContent=i;
+    cell.title=isBooked?t.name:'Available';
+    grid.appendChild(cell);
+  }
+}
+function bkSearch(val){
+  const v=val.trim().toLowerCase();
+  const found=document.getElementById('bk-found');if(!found)return;
+  document.querySelectorAll('#vis-bk-chart .vis-bk-cell').forEach(c=>c.classList.remove('highlight'));
+  if(!v||!G){found.innerHTML='';return;}
+  const tickets=G.tickets||{};const tc=G.tc||15;
+  const matches=[];
+  for(let i=1;i<=tc;i++){const t=tickets[i];if(t&&t.name&&t.name.toLowerCase().includes(v))matches.push({i,t});}
+  document.querySelectorAll('#vis-bk-chart .vis-bk-cell').forEach((c,idx)=>{
+    const num=idx+1;if(matches.some(m=>m.i===num))c.classList.add('highlight');
+  });
+  if(!matches.length){found.innerHTML='<p style="color:var(--t3);font-size:.78rem;padding:8px 0;">No tickets found.</p>';return;}
+  found.innerHTML=matches.map(({i,t})=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card);border:1px solid var(--brd2);border-radius:var(--r);margin-top:6px;">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--g3);min-width:32px;">${i}</span>
+    <span style="flex:1;font-size:.84rem;font-weight:600;">${t.name}</span>
+    <span style="font-size:.65rem;padding:2px 8px;border-radius:10px;${t.paid?'background:rgba(0,200,150,.15);color:#00C896':'background:var(--red2);color:var(--red)'};">${t.paid?'Paid':'Pending'}</span>
+  </div>`).join('');
+}
+function bkClearSearch(){
+  const inp=document.getElementById('bk-search-inp');if(inp)inp.value='';
+  const found=document.getElementById('bk-found');if(found)found.innerHTML='';
+  document.querySelectorAll('#vis-bk-chart .vis-bk-cell').forEach(c=>c.classList.remove('highlight'));
+}
+function openBkAssign(tn){
+  if(!G)return;
+  const t=G.tickets&&G.tickets[tn]||{};
+  const isBooked=!!(t&&t.name);
+  document.getElementById('modbox').innerHTML=`
+    <div class="assign-box">
+      <h3>${isBooked?'Edit':'Assign'} Ticket #${p3(tn)}</h3>
+      <p>${isBooked?'Currently: <b>'+t.name+'</b>':''}</p>
+      <div class="fg"><label>Player Name</label><input class="inp" id="asgn-name" value="${t.name||''}" placeholder="Enter name..."></div>
+      <div class="fg"><label>Payment</label>
+        <select class="fi" id="asgn-paid">
+          <option value="false" ${!t.paid?'selected':''}>⏳ Unpaid / Pending</option>
+          <option value="true" ${t.paid?'selected':''}>✅ Paid</option>
+        </select>
+      </div>
+      <div style="font-size:.6rem;font-weight:800;letter-spacing:1px;color:var(--t3);text-transform:uppercase;margin-bottom:8px;">Booking Type</div>
+      <div class="assign-type-row">
+        <div class="assign-type-btn ${(!t.bookType||t.bookType==='single')?'active':''}" onclick="selAssignType('single',this)">🎫 Single</div>
+        <div class="assign-type-btn ${t.bookType==='half'?'active':''}" onclick="selAssignType('half',this)">📄 Half (3)</div>
+        <div class="assign-type-btn ${t.bookType==='full'?'active':''}" onclick="selAssignType('full',this)">📋 Full (6)</div>
+      </div>
+      <input type="hidden" id="asgn-type" value="${t.bookType||'single'}">
+      <div class="assign-actions">
+        <button class="abtn" style="flex:1;" onclick="saveAdmBkTix(${tn})">Save</button>
+        ${isBooked?`<button class="bsm bd" onclick="clrAdmBkTix(${tn})">Clear</button>`:''}
+        <button class="bsm bw" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>`;
+  document.getElementById('modov').classList.add('on');
+}
+function selAssignType(type,btn){
+  document.querySelectorAll('.assign-type-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('asgn-type').value=type;
+}
+function saveAdmBkTix(tn){
+  const n=document.getElementById('asgn-name').value.trim();
+  if(!n){toast('Enter a name');return;}
+  const paid=document.getElementById('asgn-paid').value==='true';
+  const bookType=document.getElementById('asgn-type').value;
+  const groupId=bookType==='half'?Math.ceil(tn/3):bookType==='full'?Math.ceil(tn/6):null;
+  const update={name:n,paid,bookType};
+  if(groupId)update.groupId=groupId;
+  db.ref('game/tickets/'+tn).update(update).then(()=>{
+    closeModal();toast('✅ Ticket #'+p3(tn)+' → '+n);
+    if(document.getElementById('adm-bk-chart'))renderAdmBookings();
+  });
+}
+function clrAdmBkTix(tn){
+  db.ref('game/tickets/'+tn).update({name:'',paid:false,bookType:'single',groupId:null})
+    .then(()=>{closeModal();toast('Cleared.');if(document.getElementById('adm-bk-chart'))renderAdmBookings();});
+}
+function renderAdmBookings(){
+  const el=document.getElementById('adm-bk-body');if(!el)return;
+  if(!G){el.innerHTML='<p style="color:var(--t3);font-size:.88rem;font-style:italic;">No active game.</p>';return;}
+  const tickets=G.tickets||{};const tc=G.tc||15;
+  const allTix=Object.values(tickets).filter(t=>t&&t.name);
+  const booked=allTix.length;
+  const half=allTix.filter(t=>t.bookType==='half').length;
+  const full=allTix.filter(t=>t.bookType==='full').length;
+  const single=booked-half-full;
+  el.innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
+      <div class="bk-sheet-card single"><div class="bk-sheet-val">${single}</div><div class="bk-sheet-lbl">Single</div></div>
+      <div class="bk-sheet-card half"><div class="bk-sheet-val">${half}</div><div class="bk-sheet-lbl">Half Sheet</div></div>
+      <div class="bk-sheet-card full"><div class="bk-sheet-val">${full}</div><div class="bk-sheet-lbl">Full Sheet</div></div>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;">
+      <button class="bsm bs admb-mode-btn active-mode" onclick="setAdmBkMode('single',this)">Single</button>
+      <button class="bsm bw admb-mode-btn" onclick="setAdmBkMode('half',this)">Half Sheet (3)</button>
+      <button class="bsm bw admb-mode-btn" onclick="setAdmBkMode('full',this)">Full Sheet (6)</button>
+    </div>
+    <div id="adm-bk-grid-wrap"></div>`;
+  renderAdmBkGrid('single');
+}
+let _admBkMode='single';
+function setAdmBkMode(mode,btn){
+  _admBkMode=mode;
+  document.querySelectorAll('.admb-mode-btn').forEach(b=>{b.className='bsm bw admb-mode-btn';});
+  if(btn){btn.className='bsm bs admb-mode-btn active-mode';}
+  renderAdmBkGrid(mode);
+}
+function renderAdmBkGrid(mode){
+  const wrap=document.getElementById('adm-bk-grid-wrap');if(!wrap||!G)return;
+  const tickets=G.tickets||{};const tc=G.tc||15;
+  if(mode==='single'){
+    // Simple grid — tap each cell to assign
+    let html='<div style="font-size:.7rem;font-weight:700;color:var(--t3);margin-bottom:8px;">Tap a ticket to assign / edit.</div>';
+    html+='<div class="bk-chart-grid" id="adm-bk-chart">';
+    for(let i=1;i<=tc;i++){
+      const t=tickets[i];const isBooked=!!(t&&t.name);
+      html+=`<div class="bk-chart-cell admin-mode${isBooked?' booked':''}" onclick="openBkAssign(${i})">
+        <div class="bk-cell-num">${p3(i)}</div>
+        ${isBooked?`<div class="bk-cell-name">${t.name.split(' ')[0]}</div>`:''}
+      </div>`;
+    }
+    html+='</div>';
+    wrap.innerHTML=html;
+  } else {
+    // Group view: 3-per-group for half, 6-per-group for full
+    const grpSize=mode==='half'?3:6;
+    const numGroups=Math.ceil(tc/grpSize);
+    let html=`<div style="font-size:.7rem;font-weight:700;color:var(--t3);margin-bottom:8px;">Select a group slot to assign all ${grpSize} tickets to one person.</div>`;
+    for(let g=0;g<numGroups;g++){
+      const start=g*grpSize+1;const end=Math.min(start+grpSize-1,tc);
+      const label=mode==='half'?'Half Sheet':'Full Sheet';
+      // Check if any in this group are booked
+      const anyBooked=Array.from({length:end-start+1},(_,k)=>start+k).some(n=>tickets[n]&&tickets[n].name);
+      html+=`<div class="sheet-group">
+        <div class="sheet-group-header">
+          <span>${label} ${g+1} &nbsp;&mdash;&nbsp; Tickets ${start}–${end}</span>
+          ${anyBooked?`<button class="bsm bd" style="font-size:.6rem;padding:3px 8px;" onclick="clrGroupBk(${start},${end})">Clear Group</button>`:`<button class="bsm bs" style="font-size:.6rem;padding:3px 8px;" onclick="openGroupAssign(${start},${end},'${mode}')">Assign Group</button>`}
+        </div>
+        <div class="sheet-group-cells${mode==='full'?' full-sheet':''}">`;
+      for(let n=start;n<=end;n++){
+        const t=tickets[n];const isBooked=!!(t&&t.name);
+        html+=`<div class="sheet-group-cell${isBooked?' booked':''}" onclick="openBkAssign(${n})">
+          <div class="sheet-group-cell-n">${p3(n)}</div>
+          <div class="sheet-group-cell-nm">${isBooked?t.name:'Open'}</div>
+        </div>`;
+      }
+      html+='</div></div>';
+    }
+    wrap.innerHTML=html;
+  }
+}
+function openGroupAssign(start,end,mode){
+  // Assign a single name+paid status to all tickets in the group
+  openModal('Assign '+( mode==='half'?'Half Sheet':'Full Sheet')+' ('+start+'–'+end+')',
+    `<div class="fg"><label>Player Name</label><input class="inp" id="grp-name" placeholder="Name for all ${end-start+1} tickets..."></div>
+    <div class="fg"><label>Payment</label><select class="fi" id="grp-paid">
+      <option value="false">Unpaid / Pending</option><option value="true">Paid</option>
+    </select></div>`,
+    `<button class="abtn" onclick="saveGroupBk(${start},${end},'${mode}')">Assign All</button>
+     <button class="bsm bw" style="margin-left:8px;" onclick="closeModal()">Cancel</button>`);
+}
+function saveGroupBk(start,end,mode){
+  const n=document.getElementById('grp-name').value.trim();if(!n){toast('Enter a name');return;}
+  const paid=document.getElementById('grp-paid').value==='true';
+  const groupId=mode+'_'+(Math.ceil(start/(mode==='half'?3:6)));
+  const updates={};
+  for(let i=start;i<=end;i++){updates['game/tickets/'+i]={...((G.tickets&&G.tickets[i])||{}),name:n,paid,bookType:mode,groupId};}
+  db.ref().update(updates).then(()=>{closeModal();toast('Group assigned to '+n);renderAdmBookings();});
+}
+function clrGroupBk(start,end){
+  const updates={};
+  for(let i=start;i<=end;i++){updates['game/tickets/'+i]={...((G.tickets&&G.tickets[i])||{}),name:'',paid:false,bookType:'single',groupId:null};}
+  db.ref().update(updates).then(()=>{toast('Group cleared.');renderAdmBookings();});
+}
+
+
+/* ════ EDIT GAME ════ */
+function openEdit(){
+  if(!G)return;
+  openModal('Edit Game',`
+    <div class="fg"><label>Start Date</label><input class="inp" id="egd" value="${G.sd||''}"></div>
+    <div class="fg"><label>Start Time</label><input class="inp" id="egt" type="time" value="${G.st||''}"></div>
+    <div class="fg"><label>Description</label><input class="inp" id="egds" value="${G.desc||''}"></div>
+    <div class="fg"><label>Prize Pool (₹)</label><input class="inp" id="egpool" type="number" value="${G.pool||0}"></div>`,
+  `<button class="abtn" onclick="saveEdit()">Save</button><button class="bsm bw" style="margin-left:8px;" onclick="closeModal()">Cancel</button>`);
+}
+function saveEdit(){
+  const sd=document.getElementById('egd').value;const st=document.getElementById('egt').value;
+  db.ref('game').update({sd,st,desc:document.getElementById('egds').value,pool:parseInt(document.getElementById('egpool').value)||G.pool||0,startTs:sd&&st?new Date(sd+'T'+st).getTime():null})
+    .then(()=>{closeModal();toast('Updated!');});
+}
+
+/* ════ TICKET MANAGEMENT ════ */
+function openTix(){
+  if(!G)return;
+  const tickets=G.tickets||{};const tc=G.tc||15;
+  const slots=Object.entries(tickets).map(([k,t])=>`<div class="at-sl ${t&&t.name?'bk':''}" onclick="openBkTix(${k})"><div class="at-n">${p3(parseInt(k))}</div><div class="at-nm">${t&&t.name||'—'}</div><div class="at-st">${t&&t.name?(t.paid?'💰 PAID':'❌ UNPAID'):'OPEN'}</div></div>`).join('');
+  openModal('Tickets — '+G.name,`<div class="at-grid" style="max-height:360px;overflow-y:auto;">${slots}</div>`,`<button class="bsm bw" onclick="closeModal()">Close</button>`);
+}
+function openBkTix(tn){
+  if(!G)return;const t=G.tickets&&G.tickets[tn]||{};
+  closeModal();
+  setTimeout(()=>{
+    const nums=t.nums||mkN();
+    // Build mini ticket preview
+    let rows='';
+    nums.forEach(row=>{
+      rows+='<tr>';
+      row.forEach(v=>{
+        rows+=v
+          ?`<td style="border-right:1.5px solid #222;border-bottom:1.5px solid #222;width:11.1%;padding:0;text-align:center;"><div style="display:flex;align-items:center;justify-content:center;height:30px;background:#FFFEF2;font-weight:900;font-size:.8rem;color:#1A5219;">${v}</div></td>`
+          :`<td style="border-right:1.5px solid #222;border-bottom:1.5px solid #222;width:11.1%;padding:0;"><div style="height:30px;background:#EDE8CE;"></div></td>`;
+      });
+      rows+='</tr>';
+    });
+    openModal('Ticket #'+p3(tn),`
+      <div class="fg"><label>Player Name</label><input class="inp" id="btn" value="${t.name||''}" placeholder="Enter name..."></div>
+      <div class="fg"><label>Payment</label><select class="fi" id="bpaid"><option value="false" ${!t.paid?'selected':''}>⏳ Unpaid / Pending</option><option value="true" ${t.paid?'selected':''}>✅ Paid</option></select></div>
+      <div style="font-size:.62rem;font-weight:800;letter-spacing:1.5px;color:var(--t3);margin:10px 0 6px;text-transform:uppercase;">Ticket Numbers</div>
+      <div style="background:#FFFEF2;border:2px solid #1a1a1a;border-radius:6px;overflow:hidden;">
+        <table style="width:100%;border-collapse:collapse;">${rows}</table>
+      </div>`,
+    `<button class="abtn" onclick="saveTix(${tn})">Save</button>${t.name?`<button class="bsm bd" style="margin-left:7px;" onclick="clrTix(${tn})">Remove</button>`:''}<button class="bsm bw" style="margin-left:7px;" onclick="closeModal()">Cancel</button>`);
+  },100);
+}
+function saveTix(tn){
+  const n=document.getElementById('btn').value.trim();if(!n){toast('Enter a name');return;}
+  const paid=document.getElementById('bpaid').value==='true';
+  db.ref('game/tickets/'+tn).update({name:n,paid}).then(()=>{closeModal();toast('✅ Ticket #'+tn+' → '+n);});
+}
+function clrTix(tn){
+  db.ref('game/tickets/'+tn).update({name:'',paid:false}).then(()=>{closeModal();toast('Cleared.');});
+}
+
+/* ════ NOTICES ════ */
+function addNotice(){
+  const t=document.getElementById('ninp').value.trim();if(!t){toast('Enter text');return;}
+  const key=db.ref('notices').push().key;
+  db.ref('notices/'+key).set({text:t,time:Date.now(),id:key})
+    .then(()=>{document.getElementById('ninp').value='';toast('Published!');renderNoticesAdmin();});
+}
+function deleteNotice(id){db.ref('notices/'+id).remove().then(()=>{toast('Removed.');renderNoticesAdmin();});}
+function editNotice(id){
+  openModal('Edit Notice','<div class="fg"><textarea class="ft" id="edit-notice-txt" style="min-height:80px;"></textarea></div>',
+    `<button class="abtn" onclick="saveNoticeEdit('${id}')">Save</button><button class="bsm bw" style="margin-left:8px;" onclick="closeModal()">Cancel</button>`);
+  db.ref('notices/'+id).once('value',s=>{const d=s.val();if(d)document.getElementById('edit-notice-txt').value=d.text;});
+}
+function saveNoticeEdit(id){
+  const t=document.getElementById('edit-notice-txt').value.trim();if(!t)return;
+  db.ref('notices/'+id).update({text:t}).then(()=>{closeModal();toast('Updated!');});
+}
+function renderNoticesAdmin(){
+  db.ref('notices').once('value',snap=>{
+    const el=document.getElementById('notices-admin-list');if(!el)return;
+    const data=snap.val();
+    if(!data||!Object.keys(data).length){el.innerHTML='<p style="color:var(--t3);font-size:.84rem;font-style:italic;">No notices.</p>';return;}
+    const list=Object.values(data).sort((a,b)=>(a.time||0)-(b.time||0));
+    el.innerHTML=list.map(n=>`<div class="notice-item-admin"><div class="nia-txt">${n.text}<div style="font-size:.66rem;color:var(--t3);margin-top:3px;">${new Date(n.time||Date.now()).toLocaleString()}</div></div><div class="nia-acts"><button class="bsm bw" onclick="editNotice('${n.id}')">✏️</button><button class="bsm bd" onclick="deleteNotice('${n.id}')">🗑</button></div></div>`).join('');
+  });
+}
+
+/* ════ SOCIAL ════ */
+function saveSoc(t){const v=document.getElementById(t+'inp').value.trim();db.ref('social/'+t).set(v).then(()=>toast('Saved!'));}
+function clrSoc(t){db.ref('social/'+t).remove().then(()=>{document.getElementById(t+'inp').value='';toast('Cleared.');});}
+
+/* ════ BANNERS ════ */
+function renderBannerSel(){
+  const grid=document.getElementById('banner-sel-grid');if(!grid)return;
+  grid.innerHTML=L.banners.map((url,i)=>`
+    <div class="bsel ${L.selectedBanner===i?'active':''} ${url?'':'bsel-empty'}" onclick="selectBanner(${i})">
+      ${url?`<img src="${url}" alt="Banner ${i+1}"><button class="bsel-del" onclick="event.stopPropagation();deleteBanner(${i})">✕</button>`:'➕'}
+    </div>`).join('');
+}
+function selectBanner(idx){L.selectedBanner=idx;const url=L.banners[idx];if(url)document.getElementById('ngbanner-url').value=url;renderBannerSel();}
+function deleteBanner(idx){L.banners[idx]='';if(L.selectedBanner===idx){L.selectedBanner=-1;document.getElementById('ngbanner-url').value='';}renderBannerSel();toast('Banner removed.');}
+function renderBannerInputs(){
+  const el=document.getElementById('banner-inputs');
+  el.innerHTML=L.banners.map((url,i)=>`<div class="fg"><label>Banner ${i+1}</label><input class="fi" id="bi-${i}" value="${url}" placeholder="https://..."></div>`).join('');
+}
+function saveBanners(){
+  for(let i=0;i<5;i++){const el=document.getElementById('bi-'+i);if(el)L.banners[i]=el.value.trim();}
+  db.ref('banners').set(L.banners).then(()=>{renderBannerSel();toast('✅ Banners saved!');}).catch(e=>toast('Error: '+e.message));
+}
+
+/* ════ SECRET PANEL ════ */
+function chkSec(v){
+  if(v===SEC_KEY){
+    document.getElementById('secp').classList.add('on');
+    document.getElementById('fbwrap').style.display='none';
+    renderSec();
+  }
+  if(!v){document.getElementById('secp').classList.remove('on');document.getElementById('fbwrap').style.display='block';}
+}
+function renderSec(){
+  const el=document.getElementById('secgames');
+  if(!G||G.status==='ended'){el.innerHTML='<p style="color:var(--t3);font-style:italic;font-size:.84rem;">No active game.</p>';return;}
+  const bkd=Object.entries(G.tickets||{}).filter(([k,v])=>v&&v.name);
+  const tix=bkd.map(([k,v])=>`<option value="${k}">#${p3(parseInt(k))} — ${v.name}</option>`).join('');
+  const modes=(G.wm||[]).map(id=>{const m=MODES.find(x=>x.id===id);return`<option value="${id}">${m?m.name:id}</option>`;}).join('');
+  const fw=G.fw||{};
+  const lockRows=Object.keys(fw).map(modeId=>{
+    const lockInfo=fw[modeId];if(!lockInfo)return'';
+    const t=G.tickets&&G.tickets[lockInfo.t];if(!t)return'';
+    const needed=getNumsForMode(t,modeId);
+    const miss=needed.filter(n=>!(G.called||[]).includes(n));
+    const won=(G.winners||[]).some(w=>w.m===modeId);
+    return `<div style="margin-top:6px;background:var(--red2);border:1.5px dashed rgba(229,57,53,.3);border-radius:8px;padding:8px 10px;font-size:.78rem;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+      <span>${won?'<b style="color:var(--g2);">✅ '+getModeLabel(modeId)+' winner declared!</b>':'🔒 <b>#'+p3(lockInfo.t)+'</b> for <b>'+getModeLabel(modeId)+'</b> — needs <b style="color:var(--red);">'+miss.length+'</b> more'}</span>
+      <button class="bsm bd" onclick="clFW('${modeId}')">✕</button>
+    </div>`;
+  }).join('');
+  el.innerHTML=`<div class="adm-card">
+    <div style="font-weight:800;font-size:.92rem;margin-bottom:10px;">${G.name}</div>
+    ${!bkd.length?'<p style="color:var(--t3);font-size:.8rem;">No booked tickets yet.</p>':`
+    <div class="fr2">
+      <div class="fg"><label>Ticket</label><select class="fi" id="swt">${tix}</select></div>
+      <div class="fg"><label>Win Mode</label><select class="fi" id="swm">${modes}</select></div>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:6px;">
+      <button class="abtn" style="font-size:.8rem;padding:8px 14px;" onclick="lkFW()">🔒 Lock This Mode</button>
+    </div>`}
+    ${lockRows||'<p style="color:var(--t3);font-size:.78rem;margin-top:8px;">No locks set. Each mode can be locked to a different ticket independently.</p>'}
+  </div>`;
+}
+function lkFW(){
+  const te=document.getElementById('swt');const me=document.getElementById('swm');if(!te||!me)return;
+  const modeId=me.value;
+  db.ref('game/fw/'+modeId).set({t:parseInt(te.value)}).then(()=>{toast('🔒 '+getModeLabel(modeId)+' locked!');renderSec();});
+}
+function clFW(modeId){
+  db.ref('game/fw/'+modeId).remove().then(()=>{toast('Cleared.');renderSec();});
+}
+
+/* ════ CONFETTI ════ */
+function doConfetti(){
+  const cv=document.getElementById('cnf');const ctx=cv.getContext('2d');
+  cv.style.display='block';cv.width=window.innerWidth;cv.height=window.innerHeight;
+  const ps=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*-cv.height,r:Math.random()*5+3,d:Math.random()*4+2,c:['#6C47FF','#F4C430','#fff','#9F80FF','#FF4757','#00C896'][Math.floor(Math.random()*6)],ta:0,ti:Math.random()*.07+.04,tilt:0}));
+  let fr=0;
+  function draw(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{ctx.beginPath();ctx.fillStyle=p.c;ctx.ellipse(p.x+p.tilt,p.y,p.r,p.r*.4,p.ta,0,2*Math.PI);ctx.fill();p.y+=p.d;p.ta+=p.ti;p.tilt=Math.sin(p.ta)*14;if(p.y>cv.height){p.y=-10;p.x=Math.random()*cv.width;}});fr++;if(fr<180)requestAnimationFrame(draw);else cv.style.display='none';}
+  draw();
+}
+
+/* ════ TERMS & CONDITIONS ════ */
+function openTc(){document.getElementById('tc-ov').classList.add('on');}
+function closeTc(){document.getElementById('tc-ov').classList.remove('on');}
+function acceptTcAndClose(){closeTc();}
+
+/* ════ SHARE ════ */
+function shareGame(){
+  const text=(G&&G.status==='live'?G.name+' is LIVE! ':'Join ')+'Lionboy Lucky 7 Tambola! lionboylucky7.online';
+  if(navigator.share)navigator.share({title:'Lionboy Lucky 7',text,url:'https://lionboylucky7.online'}).catch(()=>{});
+  else navigator.clipboard.writeText(text).then(()=>toast('Link copied! 📋')).catch(()=>window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank'));
+}
+
+/* ════ INIT ════ */
+document.getElementById('ngbd').value=new Date().toISOString().split('T')[0];
+document.getElementById('ngsd').value=new Date().toISOString().split('T')[0];
+
+// Theme init — light by default, restore saved preference
+const savedTheme=localStorage.getItem('ll7_theme')||'light';
+L.theme=savedTheme;
+document.body.toggleAttribute('data-light',L.theme==='light');
+document.getElementById('tsw').classList.toggle('on',L.theme==='dark');
+const themeSpan=document.querySelector('.m-theme span');
+if(themeSpan)themeSpan.textContent=L.theme==='light'?'🌙 Dark Mode':'☀️ Light Mode';
+
+buildBoards();
+startListeners();
+startCountdown();
+
+// SAFETY: if Firebase hasn't responded (success OR error) within 10 seconds,
+// something is wrong with the connection/config/rules. Show this instead of
+// letting the loading screen spin forever with no explanation.
+setTimeout(()=>{
+  const el=document.getElementById('loading');
+  if(el&&!el.classList.contains('hide')){
+    const errEl=document.getElementById('loading-error');
+    if(errEl){
+      errEl.style.display='block';
+      errEl.textContent='⚠️ Server is taking too long to respond. Check your internet connection, or the Firebase database rules / config.';
+    }
+  }
+},10000);
+</script>
+
+
+</body>
+</html>
